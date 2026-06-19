@@ -1,0 +1,1285 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creador de preguntas</title>
+  <style>
+    :root {
+      --bg: #f5f1e8;
+      --panel: #fffdf8;
+      --panel-2: #fff7e7;
+      --text: #2f2416;
+      --muted: #6f5b43;
+      --border: #dcc7a3;
+      --accent: #8b0000;
+      --accent-2: #b22222;
+      --gold: #c89f3d;
+      --gold-soft: #f8ebc8;
+      --success: #2f7d32;
+      --success-soft: #e8f6e8;
+      --warning: #a06a00;
+      --warning-soft: #fff4da;
+      --danger: #a02b2b;
+      --danger-soft: #fde6e6;
+      --shadow: 0 18px 40px rgba(47, 36, 22, 0.12);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(200, 159, 61, 0.12), transparent 26%),
+        radial-gradient(circle at top right, rgba(178, 34, 34, 0.08), transparent 24%),
+        var(--bg);
+      line-height: 1.45;
+    }
+
+    .app {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .hero {
+      margin-bottom: 18px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.08;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .subtitle {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 72ch;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 10px;
+      z-index: 20;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(8px);
+      background: rgba(255, 253, 248, 0.92);
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--text);
+      border-radius: 14px;
+      padding: 12px 16px;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+      box-shadow: 0 8px 20px rgba(47, 36, 22, 0.05);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(47, 36, 22, 0.08);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn:focus-visible,
+    textarea:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(200, 159, 61, 0.25);
+      border-color: var(--gold);
+    }
+
+    .btn--primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff7ea;
+      border-color: transparent;
+    }
+
+    .btn--success {
+      background: linear-gradient(135deg, var(--success), #245f27);
+      color: #ffffff;
+      border-color: transparent;
+    }
+
+    .btn--danger {
+      background: var(--danger-soft);
+      color: var(--danger);
+      border-color: #f3b9b9;
+    }
+
+    .btn--secondary {
+      background: var(--gold-soft);
+      color: #6e4d0d;
+      border-color: #ead08a;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .summary-card {
+      padding: 16px 18px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+
+    .summary-label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 8px;
+    }
+
+    .summary-value {
+      display: block;
+      font-size: 1.15rem;
+      font-weight: 900;
+      word-break: break-word;
+    }
+
+    .summary-value[data-status="dirty"] {
+      color: var(--warning);
+    }
+
+    .summary-value[data-status="clean"] {
+      color: var(--success);
+    }
+
+    .banner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+      border-radius: 16px;
+      border: 1px solid transparent;
+      font-weight: 700;
+    }
+
+    .banner--info {
+      background: #eef5ff;
+      color: #1e5aa8;
+      border-color: #bfd6f6;
+    }
+
+    .banner--success {
+      background: var(--success-soft);
+      color: var(--success);
+      border-color: #bcdcbc;
+    }
+
+    .banner--warning {
+      background: var(--warning-soft);
+      color: var(--warning);
+      border-color: #f1d7a0;
+    }
+
+    .banner--error {
+      background: var(--danger-soft);
+      color: var(--danger);
+      border-color: #f3b9b9;
+    }
+
+    .banner__message {
+      flex: 1;
+    }
+
+    .banner__close {
+      appearance: none;
+      border: none;
+      background: transparent;
+      color: inherit;
+      font-size: 1.3rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0 4px;
+    }
+
+    .help {
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      background: var(--panel-2);
+    }
+
+    .help h2 {
+      margin: 0 0 10px;
+      font-size: 1.12rem;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 12px 0 0;
+    }
+
+    .step {
+      background: rgba(255,255,255,0.65);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .step p,
+    .help p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .editor {
+      padding: 16px;
+      min-height: 320px;
+    }
+
+    .empty-state {
+      border: 2px dashed var(--border);
+      border-radius: 18px;
+      padding: 36px 20px;
+      background: rgba(255,255,255,0.6);
+      text-align: center;
+    }
+
+    .empty-state h2 {
+      margin: 0 0 8px;
+      font-size: 1.45rem;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .empty-state p {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    .questions {
+      display: grid;
+      gap: 16px;
+    }
+
+    .question-card {
+      background: #fffdf9;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .question-card.is-complete {
+      border-color: rgba(47, 125, 50, 0.35);
+      background: linear-gradient(180deg, rgba(232, 246, 232, 0.72), #fffdf9);
+    }
+
+    .question-card.is-incomplete {
+      border-color: rgba(160, 106, 0, 0.35);
+      background: linear-gradient(180deg, rgba(255, 244, 218, 0.8), #fffdf9);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .question-number {
+      font-size: 1.08rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 800;
+    }
+
+    .badge::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.85;
+    }
+
+    .badge--complete {
+      background: var(--success-soft);
+      color: var(--success);
+    }
+
+    .badge--incomplete {
+      background: var(--warning-soft);
+      color: var(--warning);
+    }
+
+    .fields {
+      display: grid;
+      gap: 14px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field > span {
+      font-weight: 800;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 96px;
+      resize: vertical;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font: inherit;
+      color: var(--text);
+      background: #ffffff;
+      line-height: 1.5;
+      transition: border-color 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font: inherit;
+      color: var(--text);
+      background: #ffffff;
+      transition: border-color 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .field-note {
+      margin: 14px 0 0;
+      font-size: 0.93rem;
+      font-weight: 700;
+    }
+
+    .field-note--complete {
+      color: var(--success);
+    }
+
+    .field-note--incomplete {
+      color: var(--warning);
+    }
+
+    .small-note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(47, 36, 22, 0.45);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal {
+      width: min(560px, 100%);
+      padding: 22px;
+    }
+
+    .modal h2 {
+      margin: 0 0 10px;
+      font-size: 1.4rem;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .modal p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .modal .field {
+      margin-top: 16px;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    code {
+      font-family: Consolas, monospace;
+      background: #f4ead3;
+      color: #6a4d11;
+      padding: 0.12rem 0.36rem;
+      border-radius: 0.45rem;
+      font-size: 0.92em;
+    }
+
+    @media (max-width: 760px) {
+      .app {
+        padding: 16px;
+      }
+
+      .toolbar {
+        position: static;
+      }
+
+      .toolbar .btn,
+      .card-actions .btn {
+        width: 100%;
+      }
+
+      .card-top {
+        flex-direction: column;
+      }
+
+      .modal-actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="hero">
+      <p class="eyebrow">AQUILAE · Herramienta local</p>
+      <h1>Creador de preguntas</h1>
+      <p class="subtitle">
+        Sirve para preparar el archivo de preguntas del juego sin tocar código.
+        Puedes empezar una lista nueva, abrir una que ya exista y guardarla donde quieras con el nombre que quieras.
+      </p>
+    </header>
+
+    <section class="toolbar panel" aria-label="Acciones principales">
+      <button type="button" id="newListBtn" class="btn">Nueva lista</button>
+      <button type="button" id="openFileBtn" class="btn">Abrir archivo</button>
+      <button type="button" id="saveFileBtn" class="btn btn--primary">Guardar archivo</button>
+      <button type="button" id="addQuestionBtn" class="btn btn--success">Añadir pregunta</button>
+      <input id="fileInput" type="file" accept=".json,application/json" hidden />
+    </section>
+
+    <section class="summary-grid" aria-label="Resumen del archivo actual">
+      <article class="summary-card">
+        <span class="summary-label">Archivo actual</span>
+        <strong id="currentFileValue" class="summary-value">Lista nueva (sin guardar)</strong>
+      </article>
+      <article class="summary-card">
+        <span class="summary-label">Total</span>
+        <strong id="totalValue" class="summary-value">0</strong>
+      </article>
+      <article class="summary-card">
+        <span class="summary-label">Completas</span>
+        <strong id="completeValue" class="summary-value">0</strong>
+      </article>
+      <article class="summary-card">
+        <span class="summary-label">Incompletas</span>
+        <strong id="incompleteValue" class="summary-value">0</strong>
+      </article>
+      <article class="summary-card">
+        <span class="summary-label">Cambios sin guardar</span>
+        <strong id="dirtyValue" class="summary-value" data-status="clean">No</strong>
+      </article>
+    </section>
+
+    <div id="messageBanner" class="banner banner--info" hidden aria-live="polite">
+      <div id="messageText" class="banner__message"></div>
+      <button type="button" id="messageCloseBtn" class="banner__close" aria-label="Cerrar aviso">×</button>
+    </div>
+
+    <section class="help panel" aria-labelledby="helpTitle">
+      <h2 id="helpTitle">Cómo se usa</h2>
+      <div class="steps">
+        <div class="step">
+          <strong>1. Crea o abre</strong>
+          <p>Pulsa <b>Nueva lista</b> para empezar desde cero o <b>Abrir archivo</b> para cargar uno ya hecho.</p>
+        </div>
+        <div class="step">
+          <strong>2. Escribe las preguntas</strong>
+          <p>Cada tarjeta tiene una pregunta y su respuesta. Puedes añadir, duplicar o borrar las que quieras.</p>
+        </div>
+        <div class="step">
+          <strong>3. Guarda tu archivo</strong>
+          <p>Pulsa <b>Guardar archivo</b>. El archivo se guardará en el formato que necesita el juego.</p>
+        </div>
+      </div>
+      <p class="small-note">
+        Este editor acepta archivos normales de preguntas y también archivos con <code>preguntas</code> o <code>questions</code> dentro.
+      </p>
+    </section>
+
+    <main class="editor panel">
+      <div id="emptyState" class="empty-state">
+        <h2>No hay preguntas todavía</h2>
+        <p>Pulsa el botón de abajo para empezar con la primera.</p>
+        <button type="button" id="emptyAddBtn" class="btn btn--success">Añadir la primera pregunta</button>
+      </div>
+
+      <div id="questionsList" class="questions" hidden></div>
+    </main>
+  </div>
+
+  <div id="appModal" class="modal-backdrop" hidden>
+    <section class="modal panel" aria-labelledby="dialogTitle">
+      <h2 id="dialogTitle">Confirmar acción</h2>
+      <p id="dialogMessage"></p>
+
+      <label id="dialogInputField" class="field" hidden>
+        <span id="dialogInputLabel">Nombre del archivo</span>
+        <input id="dialogInput" type="text" autocomplete="off" />
+      </label>
+
+      <div class="modal-actions">
+        <button type="button" id="dialogCancelBtn" class="btn">Cancelar</button>
+        <button type="button" id="dialogConfirmBtn" class="btn btn--primary">Aceptar</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const state = {
+        questions: [],
+        currentFileName: "Lista nueva (sin guardar)",
+        dirty: false
+      };
+
+      const elements = {
+        newListBtn: document.getElementById("newListBtn"),
+        openFileBtn: document.getElementById("openFileBtn"),
+        saveFileBtn: document.getElementById("saveFileBtn"),
+        addQuestionBtn: document.getElementById("addQuestionBtn"),
+        emptyAddBtn: document.getElementById("emptyAddBtn"),
+        fileInput: document.getElementById("fileInput"),
+        currentFileValue: document.getElementById("currentFileValue"),
+        totalValue: document.getElementById("totalValue"),
+        completeValue: document.getElementById("completeValue"),
+        incompleteValue: document.getElementById("incompleteValue"),
+        dirtyValue: document.getElementById("dirtyValue"),
+        messageBanner: document.getElementById("messageBanner"),
+        messageText: document.getElementById("messageText"),
+        messageCloseBtn: document.getElementById("messageCloseBtn"),
+        emptyState: document.getElementById("emptyState"),
+        questionsList: document.getElementById("questionsList"),
+        appModal: document.getElementById("appModal"),
+        dialogTitle: document.getElementById("dialogTitle"),
+        dialogMessage: document.getElementById("dialogMessage"),
+        dialogInputField: document.getElementById("dialogInputField"),
+        dialogInputLabel: document.getElementById("dialogInputLabel"),
+        dialogInput: document.getElementById("dialogInput"),
+        dialogCancelBtn: document.getElementById("dialogCancelBtn"),
+        dialogConfirmBtn: document.getElementById("dialogConfirmBtn")
+      };
+
+      let bannerTimer = null;
+      let idCounter = 0;
+      let dialogResolver = null;
+      let dialogMode = "confirm";
+      let lastFocusedElement = null;
+
+      function nextId() {
+        idCounter += 1;
+        return `q-${Date.now()}-${idCounter}`;
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#39;");
+      }
+
+      function readTextValue(value) {
+        if (typeof value === "string") return value;
+        if (typeof value === "number" || typeof value === "boolean") return String(value);
+        return "";
+      }
+
+      function ensureJsonExtension(fileName) {
+        const cleaned = String(fileName || "")
+          .trim()
+          .replaceAll(/[\\/:*?"<>|]+/g, "_");
+        const safe = cleaned || "preguntas.json";
+        return safe.toLowerCase().endsWith(".json") ? safe : `${safe}.json`;
+      }
+
+      function formatCount(count, singular, plural) {
+        return count === 1 ? `1 ${singular}` : `${count} ${plural}`;
+      }
+
+      function isComplete(item) {
+        return item.pregunta.trim() !== "" && item.respuesta.trim() !== "";
+      }
+
+      function getStats() {
+        const total = state.questions.length;
+        const completas = state.questions.filter(isComplete).length;
+        const incompletas = total - completas;
+        return { total, completas, incompletas };
+      }
+
+      function updateTitle() {
+        document.title = `${state.dirty ? "• " : ""}Creador de preguntas`;
+      }
+
+      function updateSummary() {
+        const stats = getStats();
+        elements.currentFileValue.textContent = state.currentFileName;
+        elements.totalValue.textContent = String(stats.total);
+        elements.completeValue.textContent = String(stats.completas);
+        elements.incompleteValue.textContent = String(stats.incompletas);
+        elements.dirtyValue.textContent = state.dirty ? "Sí" : "No";
+        elements.dirtyValue.dataset.status = state.dirty ? "dirty" : "clean";
+      }
+
+      function setDirty(value) {
+        state.dirty = Boolean(value);
+        updateSummary();
+        updateTitle();
+      }
+
+      function hideBanner() {
+        if (bannerTimer) {
+          clearTimeout(bannerTimer);
+          bannerTimer = null;
+        }
+        elements.messageBanner.hidden = true;
+        elements.messageText.textContent = "";
+      }
+
+      function showBanner(type, message, options = {}) {
+        const sticky = options.sticky === true || type === "error";
+        if (bannerTimer) {
+          clearTimeout(bannerTimer);
+          bannerTimer = null;
+        }
+
+        elements.messageBanner.className = `banner banner--${type}`;
+        elements.messageText.textContent = message;
+        elements.messageBanner.hidden = false;
+
+        if (!sticky) {
+          bannerTimer = globalThis.setTimeout(hideBanner, 5000);
+        }
+      }
+
+      function closeDialog(result) {
+        if (!dialogResolver) return;
+
+        const resolve = dialogResolver;
+        dialogResolver = null;
+        dialogMode = "confirm";
+        elements.appModal.hidden = true;
+        elements.dialogInput.value = "";
+
+        if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+          lastFocusedElement.focus();
+        }
+        lastFocusedElement = null;
+
+        resolve(result);
+      }
+
+      function openDialog({
+        title,
+        message,
+        confirmText = "Aceptar",
+        cancelText = "Cancelar",
+        mode = "confirm",
+        inputLabel = "",
+        inputValue = "",
+        inputPlaceholder = ""
+      }) {
+        if (dialogResolver) {
+          closeDialog(null);
+        }
+
+        dialogMode = mode;
+        lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        elements.dialogTitle.textContent = title;
+        elements.dialogMessage.textContent = message;
+        elements.dialogConfirmBtn.textContent = confirmText;
+        elements.dialogCancelBtn.textContent = cancelText;
+        elements.dialogInputField.hidden = mode !== "input";
+        elements.dialogInputLabel.textContent = inputLabel;
+        elements.dialogInput.value = inputValue;
+        elements.dialogInput.placeholder = inputPlaceholder;
+        elements.appModal.hidden = false;
+
+        globalThis.requestAnimationFrame(() => {
+          if (mode === "input") {
+            elements.dialogInput.focus();
+            elements.dialogInput.select();
+            return;
+          }
+
+          elements.dialogConfirmBtn.focus();
+        });
+
+        return new Promise(resolve => {
+          dialogResolver = resolve;
+        });
+      }
+
+      async function requestConfirmation({ title, message, confirmText = "Continuar", cancelText = "Cancelar" }) {
+        const result = await openDialog({ title, message, confirmText, cancelText, mode: "confirm" });
+        return result === true;
+      }
+
+      async function requestFileName(initialName) {
+        const result = await openDialog({
+          title: "Guardar archivo",
+          message: "Escribe el nombre del archivo JSON.",
+          confirmText: "Guardar",
+          cancelText: "Cancelar",
+          mode: "input",
+          inputLabel: "Nombre del archivo",
+          inputValue: ensureJsonExtension(initialName),
+          inputPlaceholder: "preguntas.json"
+        });
+
+        if (result === null) {
+          return null;
+        }
+
+        return ensureJsonExtension(result);
+      }
+
+      function autoResizeTextarea(textarea) {
+        textarea.style.height = "auto";
+        textarea.style.height = `${Math.max(textarea.scrollHeight, 96)}px`;
+      }
+
+      function autoResizeAll() {
+        elements.questionsList.querySelectorAll("textarea").forEach(autoResizeTextarea);
+      }
+
+      function syncCardState(index) {
+        const item = state.questions[index];
+        const card = elements.questionsList.querySelector(`.question-card[data-index="${index}"]`);
+        if (!item || !card) return;
+
+        const complete = isComplete(item);
+        card.classList.toggle("is-complete", complete);
+        card.classList.toggle("is-incomplete", !complete);
+
+        const badge = card.querySelector('[data-role="status-badge"]');
+        const note = card.querySelector('[data-role="status-note"]');
+
+        if (badge) {
+          badge.textContent = complete ? "Completa" : "Incompleta";
+          badge.className = `badge ${complete ? "badge--complete" : "badge--incomplete"}`;
+        }
+
+        if (note) {
+          note.textContent = complete
+            ? "Lista para guardar."
+            : "Falta completar la pregunta o la respuesta.";
+          note.className = `field-note ${complete ? "field-note--complete" : "field-note--incomplete"}`;
+        }
+      }
+
+      function renderQuestions() {
+        const hasQuestions = state.questions.length > 0;
+        elements.emptyState.hidden = hasQuestions;
+        elements.questionsList.hidden = !hasQuestions;
+
+        if (!hasQuestions) {
+          elements.questionsList.innerHTML = "";
+          updateSummary();
+          return;
+        }
+
+        elements.questionsList.innerHTML = state.questions.map((item, index) => {
+          const complete = isComplete(item);
+
+          return `
+            <article class="question-card ${complete ? "is-complete" : "is-incomplete"}" data-index="${index}">
+              <div class="card-top">
+                <div>
+                  <div class="question-number">Pregunta ${index + 1}</div>
+                  <div class="badge ${complete ? "badge--complete" : "badge--incomplete"}" data-role="status-badge">
+                    ${complete ? "Completa" : "Incompleta"}
+                  </div>
+                </div>
+                <div class="card-actions">
+                  <button type="button" class="btn btn--secondary" data-action="duplicate" data-index="${index}">Duplicar</button>
+                  <button type="button" class="btn btn--danger" data-action="delete" data-index="${index}">Eliminar</button>
+                </div>
+              </div>
+
+              <div class="fields">
+                <label class="field">
+                  <span>Pregunta</span>
+                  <textarea
+                    rows="3"
+                    data-field="pregunta"
+                    data-index="${index}"
+                    placeholder="Escribe aquí la pregunta..."
+                  >${escapeHtml(item.pregunta)}</textarea>
+                </label>
+
+                <label class="field">
+                  <span>Respuesta</span>
+                  <textarea
+                    rows="3"
+                    data-field="respuesta"
+                    data-index="${index}"
+                    placeholder="Escribe aquí la respuesta correcta..."
+                  >${escapeHtml(item.respuesta)}</textarea>
+                </label>
+              </div>
+
+              <p class="field-note ${complete ? "field-note--complete" : "field-note--incomplete"}" data-role="status-note">
+                ${complete ? "Lista para guardar." : "Falta completar la pregunta o la respuesta."}
+              </p>
+            </article>
+          `;
+        }).join("");
+
+        autoResizeAll();
+        updateSummary();
+      }
+
+      function focusQuestionField(index, field) {
+        const selector = `textarea[data-index="${index}"][data-field="${field}"]`;
+        const target = elements.questionsList.querySelector(selector);
+        if (!target) return;
+        target.focus();
+        target.setSelectionRange(target.value.length, target.value.length);
+        target.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+
+      function addQuestion(question, options = {}) {
+        const sourceQuestion = question ?? { pregunta: "", respuesta: "" };
+
+        state.questions.push({
+          id: nextId(),
+          pregunta: readTextValue(sourceQuestion.pregunta),
+          respuesta: readTextValue(sourceQuestion.respuesta)
+        });
+
+        renderQuestions();
+
+        if (options.skipDirty) {
+          updateSummary();
+        } else {
+          setDirty(true);
+        }
+
+        if (options.focus !== false) {
+          const index = state.questions.length - 1;
+          requestAnimationFrame(() => focusQuestionField(index, "pregunta"));
+        }
+      }
+
+      function duplicateQuestion(index) {
+        const original = state.questions[index];
+        if (!original) return;
+        state.questions.splice(index + 1, 0, {
+          id: nextId(),
+          pregunta: original.pregunta,
+          respuesta: original.respuesta
+        });
+        renderQuestions();
+        setDirty(true);
+        requestAnimationFrame(() => focusQuestionField(index + 1, "pregunta"));
+        showBanner("info", "Pregunta duplicada.");
+      }
+
+      async function confirmDiscardChanges(actionLabel) {
+        if (!state.dirty) return true;
+        return requestConfirmation({
+          title: "Cambios sin guardar",
+          message: `Si continúas para ${actionLabel}, perderás los cambios no guardados.`,
+          confirmText: "Seguir",
+          cancelText: "Volver"
+        });
+      }
+
+      async function createNewList() {
+        if (!(await confirmDiscardChanges("crear una lista nueva"))) return;
+        state.questions = [];
+        state.currentFileName = "Lista nueva (sin guardar)";
+        renderQuestions();
+        setDirty(false);
+        showBanner("info", "Lista nueva creada. Ya puedes empezar a añadir preguntas.");
+      }
+
+      function normalizeQuestion(entry, index) {
+        if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+          throw new Error(`La entrada ${index + 1} no tiene un formato válido.`);
+        }
+
+        const pregunta = readTextValue(entry.pregunta ?? entry.question);
+        const respuesta = readTextValue(entry.respuesta ?? entry.answer);
+
+        return {
+          pregunta,
+          respuesta
+        };
+      }
+
+      function extractQuestions(parsed) {
+        let source = null;
+
+        if (Array.isArray(parsed)) {
+          source = parsed;
+        } else if (parsed && typeof parsed === "object") {
+          if (Array.isArray(parsed.preguntas)) {
+            source = parsed.preguntas;
+          } else if (Array.isArray(parsed.questions)) {
+            source = parsed.questions;
+          }
+        }
+
+        if (!source) {
+          throw new Error(
+            "El archivo no tiene un formato reconocido. Usa un array JSON o un objeto con 'preguntas' o 'questions'."
+          );
+        }
+
+        return source.map(normalizeQuestion);
+      }
+
+      async function handleSelectedFile(file, nameOverride) {
+        try {
+          const rawText = (await file.text()).replace(/^\uFEFF/, "");
+          const parsed = JSON.parse(rawText);
+          const loadedQuestions = extractQuestions(parsed);
+
+          state.questions = loadedQuestions.map(item => ({
+            id: nextId(),
+            pregunta: item.pregunta,
+            respuesta: item.respuesta
+          }));
+          state.currentFileName = nameOverride || file.name || "archivo.json";
+          renderQuestions();
+          setDirty(false);
+
+          const stats = getStats();
+          if (stats.total === 0) {
+            showBanner("warning", `Archivo cargado: ${state.currentFileName}. Está vacío; añade al menos una pregunta antes de guardar.`);
+          } else if (stats.incompletas > 0) {
+            showBanner("warning", `Archivo cargado: ${state.currentFileName}. Hay ${formatCount(stats.incompletas, "pregunta incompleta", "preguntas incompletas")} por revisar.`);
+          } else {
+            showBanner("success", `Archivo cargado: ${state.currentFileName}. ${formatCount(stats.total, "pregunta lista", "preguntas listas")}.`);
+          }
+        } catch (error) {
+          showBanner("error", error && error.message ? error.message : "No se ha podido abrir el archivo.");
+        }
+      }
+
+      async function openFile() {
+        if (!(await confirmDiscardChanges("abrir otro archivo"))) return;
+
+        if (typeof globalThis.showOpenFilePicker === "function") {
+          try {
+            const [handle] = await globalThis.showOpenFilePicker({
+              multiple: false,
+              types: [{
+                description: "Archivo JSON",
+                accept: { "application/json": [".json"] }
+              }]
+            });
+            if (!handle) return;
+            const file = await handle.getFile();
+            await handleSelectedFile(file, handle.name || file.name);
+            return;
+          } catch (error) {
+            if (error && error.name === "AbortError") {
+              showBanner("info", "Apertura cancelada.");
+              return;
+            }
+          }
+        }
+
+        elements.fileInput.click();
+      }
+
+      function findFirstInvalidIndex() {
+        for (let i = 0; i < state.questions.length; i += 1) {
+          if (!isComplete(state.questions[i])) return i;
+        }
+        return -1;
+      }
+
+      function validateBeforeSave() {
+        if (state.questions.length === 0) {
+          showBanner("error", "Añade al menos una pregunta antes de guardar.");
+          elements.addQuestionBtn.focus();
+          return false;
+        }
+
+        const invalidIndex = findFirstInvalidIndex();
+        if (invalidIndex !== -1) {
+          const item = state.questions[invalidIndex];
+          const missingField = item.pregunta.trim() === "" ? "pregunta" : "respuesta";
+          const card = elements.questionsList.querySelector(`.question-card[data-index="${invalidIndex}"]`);
+          if (card) {
+            card.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+          requestAnimationFrame(() => focusQuestionField(invalidIndex, missingField));
+          showBanner("error", `Revisa la pregunta ${invalidIndex + 1}: la ${missingField} no puede estar vacía.`);
+          return false;
+        }
+
+        return true;
+      }
+
+      function getExportData() {
+        return state.questions.map(item => ({
+          pregunta: item.pregunta.trim(),
+          respuesta: item.respuesta.trim()
+        }));
+      }
+
+      function downloadFile(fileName, content) {
+        const blob = new Blob([content], { type: "application/json;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        globalThis.setTimeout(() => URL.revokeObjectURL(url), 1000);
+      }
+
+      async function saveFile() {
+        if (!validateBeforeSave()) return;
+
+        const payload = JSON.stringify(getExportData(), null, 2);
+        const suggestedName = /lista nueva/i.test(state.currentFileName) || !state.currentFileName
+          ? "preguntas.json"
+          : state.currentFileName;
+
+        if (typeof globalThis.showSaveFilePicker === "function") {
+          try {
+            const handle = await globalThis.showSaveFilePicker({
+              suggestedName: ensureJsonExtension(suggestedName),
+              types: [{
+                description: "Archivo JSON",
+                accept: { "application/json": [".json"] }
+              }]
+            });
+
+            const writable = await handle.createWritable();
+            await writable.write(payload);
+            await writable.close();
+
+            state.currentFileName = handle.name || ensureJsonExtension(suggestedName);
+            setDirty(false);
+            showBanner("success", `Archivo guardado correctamente como ${state.currentFileName}.`);
+            return;
+          } catch (error) {
+            if (error && error.name === "AbortError") {
+              showBanner("info", "Guardado cancelado.");
+              return;
+            }
+          }
+        }
+
+        const requestedName = await requestFileName(suggestedName);
+
+        if (requestedName === null) {
+          showBanner("info", "Guardado cancelado.");
+          return;
+        }
+
+        const finalName = ensureJsonExtension(requestedName);
+        downloadFile(finalName, payload);
+        state.currentFileName = finalName;
+        setDirty(false);
+        showBanner("success", `Se ha iniciado la descarga de ${finalName}.`);
+      }
+
+      elements.newListBtn.addEventListener("click", () => {
+        void createNewList();
+      });
+      elements.openFileBtn.addEventListener("click", () => {
+        void openFile();
+      });
+      elements.addQuestionBtn.addEventListener("click", () => addQuestion());
+      elements.emptyAddBtn.addEventListener("click", () => addQuestion());
+      elements.saveFileBtn.addEventListener("click", () => {
+        void saveFile();
+      });
+      elements.messageCloseBtn.addEventListener("click", hideBanner);
+      elements.dialogCancelBtn.addEventListener("click", () => closeDialog(null));
+      elements.dialogConfirmBtn.addEventListener("click", () => {
+        if (dialogMode === "input") {
+          closeDialog(elements.dialogInput.value);
+          return;
+        }
+
+        closeDialog(true);
+      });
+      elements.appModal.addEventListener("click", event => {
+        if (event.target === elements.appModal) {
+          closeDialog(null);
+        }
+      });
+      elements.dialogInput.addEventListener("keydown", event => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          closeDialog(elements.dialogInput.value);
+          return;
+        }
+
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeDialog(null);
+        }
+      });
+
+      elements.fileInput.addEventListener("change", async event => {
+        const file = event.target.files && event.target.files[0];
+        event.target.value = "";
+        if (!file) return;
+        await handleSelectedFile(file);
+      });
+
+      elements.questionsList.addEventListener("input", event => {
+        const target = event.target;
+        if (!(target instanceof HTMLTextAreaElement)) return;
+
+        const index = Number(target.dataset.index);
+        const field = target.dataset.field;
+        if (Number.isNaN(index) || !state.questions[index]) return;
+        if (field !== "pregunta" && field !== "respuesta") return;
+
+        state.questions[index][field] = target.value;
+        autoResizeTextarea(target);
+        syncCardState(index);
+        setDirty(true);
+      });
+
+      elements.questionsList.addEventListener("click", async event => {
+        const button = event.target.closest("button[data-action]");
+        if (!button) return;
+
+        const index = Number(button.dataset.index);
+        if (Number.isNaN(index) || !state.questions[index]) return;
+
+        if (button.dataset.action === "delete") {
+          const preview = state.questions[index].pregunta.trim();
+          const shortPreview = preview.length > 60 ? `${preview.slice(0, 60).trim()}…` : preview;
+          const description = shortPreview ? `la pregunta "${shortPreview}"` : `la pregunta ${index + 1}`;
+          const confirmed = await requestConfirmation({
+            title: "Eliminar pregunta",
+            message: `¿Seguro que quieres eliminar ${description}?`,
+            confirmText: "Eliminar",
+            cancelText: "Cancelar"
+          });
+          if (!confirmed) return;
+          state.questions.splice(index, 1);
+          renderQuestions();
+          setDirty(true);
+          showBanner("info", "Pregunta eliminada.");
+          return;
+        }
+
+        if (button.dataset.action === "duplicate") {
+          duplicateQuestion(index);
+        }
+      });
+
+      globalThis.addEventListener("beforeunload", event => {
+        if (!state.dirty) return;
+        event.preventDefault();
+        event.returnValue = "";
+      });
+
+      globalThis.addEventListener("keydown", event => {
+        if (!elements.appModal.hidden && event.key === "Escape") {
+          event.preventDefault();
+          closeDialog(null);
+          return;
+        }
+
+        const isSaveShortcut = (event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "s";
+        if (!isSaveShortcut) return;
+        event.preventDefault();
+        void saveFile();
+      });
+
+      renderQuestions();
+      setDirty(false);
+    })();
+  </script>
+</body>
+</html>
