@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             --ink: #18110d;
@@ -30,8 +30,8 @@
             --success-hover: #4a9146;
             --danger: #7f241d;
             --danger-hover: #9a2e25;
-            --radius: 14px;
-            --shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+            --radius: 8px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             --font-display: 'Cinzel', 'Trajan Pro', serif;
             --font-body: 'Lora', 'Palatino Linotype', Georgia, serif;
         }
@@ -48,8 +48,9 @@
         .leaflet-tile-pane { filter: sepia(38%) saturate(78%) brightness(0.97) contrast(0.95); }
         body.phase-setup .leaflet-overlay-pane,
         body.phase-setup .leaflet-marker-pane { opacity: 0; pointer-events: none; }
+        body.phase-setup .leaflet-control-zoom { display: none; }
         .leaflet-container { font-family: var(--font-body); }
-        .leaflet-bar { border: 1px solid var(--line) !important; box-shadow: 0 6px 18px rgba(0,0,0,0.35) !important; border-radius: 10px !important; overflow: hidden; }
+        .leaflet-bar { border: 1px solid var(--line) !important; box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important; border-radius: 6px !important; overflow: hidden; }
         .leaflet-bar a { background: var(--panel-solid) !important; color: var(--gold-soft) !important; border-bottom-color: var(--line) !important; }
         .leaflet-bar a:hover { background: #2a1f18 !important; }
         .leaflet-control-attribution { background: rgba(24,17,13,0.6) !important; color: var(--muted) !important; font-size: 10px; }
@@ -59,33 +60,31 @@
         button { font: inherit; }
         .btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            padding: 11px 18px;
-            border-radius: 10px;
+            padding: 10px 16px;
+            border-radius: 6px;
             border: 1px solid var(--line-strong);
-            background: var(--raised);
+            background: transparent;
             color: var(--text);
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 0.06em;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 15px;
             cursor: pointer;
-            transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+            transition: background 0.15s ease, border-color 0.15s ease;
         }
         .btn:hover { background: var(--raised-2); border-color: var(--gold); }
-        .btn:active { transform: translateY(1px); }
-        .btn:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 2px; }
+                .btn:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 2px; }
         .btn:disabled { opacity: 0.5; cursor: not-allowed; }
         .btn svg { width: 18px; height: 18px; flex: none; }
-        .btn--primary { background: linear-gradient(180deg, var(--primary-hover), var(--primary)); border-color: rgba(240, 220, 166, 0.55); color: #fff6e3; box-shadow: 0 6px 16px rgba(120, 25, 15, 0.35), inset 0 1px 0 rgba(255,255,255,0.12); }
-        .btn--primary:hover { background: linear-gradient(180deg, #c4413a, var(--primary-hover)); border-color: var(--gold-soft); }
-        .btn--success { background: var(--success); border-color: rgba(190, 230, 170, 0.45); color: #f1fbe9; }
+        .btn--primary { background: var(--primary); border-color: var(--primary); color: #fff6e3; }
+        .btn--primary:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
+        .btn--success { background: var(--success); border-color: var(--success); color: #f1fbe9; }
         .btn--success:hover { background: var(--success-hover); }
-        .btn--danger { background: var(--danger); border-color: rgba(255, 190, 170, 0.4); color: #ffeae4; }
+        .btn--danger { background: var(--danger); border-color: var(--danger); color: #ffeae4; }
         .btn--danger:hover { background: var(--danger-hover); }
         .btn--ghost { background: transparent; border-color: var(--line); color: var(--gold-soft); }
-        .btn--small { padding: 8px 12px; font-size: 12px; border-radius: 8px; }
+        .btn--small { padding: 7px 12px; font-size: 14px; }
         .btn--block { width: 100%; }
-        .btn--lg { padding: 15px 22px; font-size: 17px; letter-spacing: 0.1em; }
+        .btn--lg { padding: 13px 22px; font-size: 17px; }
         .link-btn { background: none; border: none; padding: 0; color: var(--gold-soft); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; font: inherit; }
         .link-btn:hover { color: #fff; }
 
@@ -97,10 +96,7 @@
             box-shadow: var(--shadow);
             backdrop-filter: blur(6px);
         }
-        .card::before {
-            content: ""; position: absolute; inset: 6px; border: 1px solid rgba(212,174,90,0.14); border-radius: 10px; pointer-events: none;
-        }
-        .eyebrow { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin: 0; }
+        .label { font-size: 13px; color: var(--muted); margin: 0; }
         .modal {
             display: none; position: fixed; inset: 0; z-index: 3000;
             background: rgba(12, 8, 6, 0.6);
@@ -108,7 +104,7 @@
             justify-content: center; align-items: center; padding: 16px;
         }
         .modal-content { position: relative; width: 100%; max-width: 520px; padding: 28px; }
-        .modal-content h3 { font-family: var(--font-display); font-size: 22px; font-weight: 700; letter-spacing: 0.06em; margin: 4px 0 18px; color: var(--gold-soft); text-align: center; }
+        .modal-content h3 { font-size: 21px; font-weight: 600; margin: 0 0 6px; color: var(--gold-soft); text-align: center; }
         .modal-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
         .field { display: block; margin: 0 0 14px; }
         .field > span { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
@@ -119,10 +115,10 @@
             color: var(--text);
             background: rgba(0,0,0,0.35);
             border: 1px solid var(--line);
-            border-radius: 9px;
+            border-radius: 6px;
             outline: none;
         }
-        select:focus, input[type="text"]:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,174,90,0.18); }
+        select:focus, input[type="text"]:focus { border-color: var(--gold); }
         select option { background: var(--panel-solid); color: var(--text); }
 
         /* ---------- Pantalla inicial ---------- */
@@ -131,7 +127,7 @@
             inset: 0;
             display: flex; align-items: center; justify-content: center;
             padding: 16px;
-            background: radial-gradient(ellipse at center, rgba(12,8,6,0.15), rgba(12,8,6,0.55));
+            background: rgba(12,8,6,0.4);
         }
         #setup { display: none; }
         #gameUI.centered-setup #setup { display: block; }
@@ -139,26 +135,27 @@
         .back-btn {
             position: absolute; top: 16px; left: 16px; z-index: 1;
             display: inline-flex; align-items: center; gap: 4px;
-            padding: 6px 10px 6px 6px; border-radius: 8px;
+            padding: 6px 10px 6px 6px; border-radius: 6px;
             background: transparent; border: 1px solid transparent;
             color: var(--muted); font-family: var(--font-body); font-size: 14px; cursor: pointer;
         }
         .back-btn svg { width: 18px; height: 18px; }
-        .back-btn:hover { color: var(--gold-soft); border-color: var(--line); background: var(--raised); }
+        .back-btn:hover { color: var(--gold-soft); }
         .back-btn:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 2px; }
         .brand { text-align: center; margin-bottom: 26px; }
+        .setup-card .brand { padding-top: 30px; }
         .brand h1 {
             font-family: var(--font-display); font-weight: 900;
-            font-size: 58px; letter-spacing: 0.16em; margin: 6px 0 4px; padding-left: 0.16em;
+            font-size: 58px; letter-spacing: 0.16em; margin: 0 0 4px; padding-left: 0.16em;
             background: linear-gradient(180deg, #f7e6b4 10%, #c99a3e 90%);
             -webkit-background-clip: text; background-clip: text; color: transparent;
             filter: drop-shadow(0 2px 0 rgba(0,0,0,0.45));
         }
         .brand p { margin: 0; color: var(--muted); font-style: italic; font-size: 15px; }
         .rule { height: 1px; margin: 16px auto 0; max-width: 300px; background: linear-gradient(90deg, transparent, var(--line-strong), transparent); }
-        .setup-section { margin-top: 22px; }
+                .setup-section { margin-top: 22px; }
         .setup-section__head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
-        .setup-section__head h2 { font-family: var(--font-display); font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-soft); margin: 0; }
+        .setup-section__head h2 { font-size: 17px; font-weight: 600; color: var(--gold-soft); margin: 0; }
         .segmented { display: inline-flex; padding: 3px; gap: 3px; background: rgba(0,0,0,0.35); border: 1px solid var(--line); border-radius: 10px; }
         .segmented button { border: none; background: transparent; color: var(--muted); font-family: var(--font-display); font-weight: 700; font-size: 13px; padding: 6px 13px; border-radius: 7px; cursor: pointer; }
         .segmented button[aria-pressed="true"] { background: var(--gold); color: var(--ink); }
@@ -166,26 +163,23 @@
         #numPlayers { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
         #players { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
         .player-entry { position: relative; }
-        .player-entry input { padding-left: 46px; height: 46px; font-size: 16px; }
+        .player-entry input { padding-left: 40px; height: 44px; font-size: 16px; }
         .player-swatch {
             position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
-            width: 22px; height: 22px; border-radius: 6px;
-            box-shadow: 0 0 0 2px rgba(255,255,255,0.18), inset 0 -3px 0 rgba(0,0,0,0.25);
+            width: 18px; height: 18px; border-radius: 4px;
         }
         .questions-box { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
         .questions-box .btn { flex: none; }
         .questions-status { flex: 1 1 220px; margin: 0; font-size: 14px; line-height: 1.45; color: var(--muted); }
-        .questions-status::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; vertical-align: 1px; background: var(--muted); }
+        .questions-status:empty { display: none; }
         .questions-status.ready { color: #cfe8c0; }
-        .questions-status.ready::before { background: #7cc36a; box-shadow: 0 0 0 3px rgba(124,195,106,0.2); }
         .questions-status.error { color: #ffc4b8; }
-        .questions-status.error::before { background: #ff7b63; }
         .questions-extra { margin: 10px 2px 0; font-size: 13px; color: var(--muted); }
         .questions-extra a { color: var(--gold-soft); }
         #startGame { margin-top: 26px; }
 
         /* Overlay Nueva / Cargar */
-        #initialOverlay { background: radial-gradient(ellipse at center, rgba(12,8,6,0.2), rgba(12,8,6,0.62)); backdrop-filter: none; }
+        #initialOverlay { background: rgba(12,8,6,0.45); backdrop-filter: none; }
         .welcome-card { max-width: 440px; text-align: center; padding: 38px 34px 32px; }
         .welcome-card .brand { margin-bottom: 28px; }
         .welcome-card .brand h1 { font-size: 50px; }
@@ -196,34 +190,34 @@
         #gameUI:not(.centered-setup) { top: 16px; right: 16px; width: 316px; max-height: calc(100vh - 32px); overflow-y: auto; }
         .game-card { position: relative; padding: 20px; }
         .turn { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
-        .turn__chip { width: 38px; height: 38px; border-radius: 10px; flex: none; box-shadow: 0 0 0 2px rgba(255,255,255,0.2), 0 0 18px var(--turn-color, transparent); background: var(--turn-color, #888); }
-        .turn__name { font-family: var(--font-display); font-size: 21px; font-weight: 700; color: #fff4dc; line-height: 1.15; word-break: break-word; }
+        .turn__chip { width: 34px; height: 34px; border-radius: 6px; flex: none; background: var(--turn-color, #888); }
+        .turn__name { font-size: 21px; font-weight: 600; color: #fff4dc; line-height: 1.2; word-break: break-word; }
         .action-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
-        .action-row .btn { padding: 11px 8px; white-space: nowrap; font-size: 13px; }
+        .action-row .btn { padding: 10px 8px; white-space: nowrap; }
         body.phase-welcome #gameUI { display: none; }
-        .attack-panel { display: none; margin-top: 12px; padding: 14px; border-radius: 10px; background: rgba(155, 42, 32, 0.16); border: 1px solid rgba(255, 120, 100, 0.3); }
+        .attack-panel { display: none; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
         .attack-panel.is-visible { display: block; }
-        .attack-panel .eyebrow { color: #ffb3a3; margin-bottom: 10px; }
         .attack-panel .field { margin-bottom: 10px; }
         .attack-panel select { font-size: 14px; padding: 8px 10px; }
         .attack-panel select:disabled { opacity: 0.55; }
-        .attack-panel__note { font-size: 12.5px; line-height: 1.4; color: var(--muted); margin: 2px 0 12px; }
-        .attack-panel__actions { display: grid; grid-template-columns: auto 1fr; gap: 8px; }
-        .attack-panel__actions .btn { white-space: nowrap; padding: 9px 10px; letter-spacing: 0.02em; min-width: 0; }
-        #attack[aria-pressed="true"] { box-shadow: inset 0 2px 6px rgba(0,0,0,0.45); border-color: var(--gold-soft); }
+        .attack-panel__note { font-size: 13px; line-height: 1.4; color: #ffc4b8; margin: 2px 0 12px; }
+        .attack-panel__note:empty { display: none; }
+        .attack-panel__actions { display: grid; grid-template-columns: auto 1fr; gap: 8px; margin-top: 4px; }
+        .attack-panel__actions .btn { white-space: nowrap; padding: 8px 10px; min-width: 0; }
+        #attack[aria-pressed="true"] { background: var(--danger); border-color: var(--danger); }
         #playersList { margin-top: 18px; }
-        .players-title { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
-        .player-info { position: relative; display: grid; grid-template-columns: 14px 1fr auto; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 10px; border: 1px solid transparent; }
-        .player-info + .player-info { margin-top: 4px; }
-        .player-info.is-current { background: var(--raised); border-color: var(--line); }
-        .player-color { width: 14px; height: 14px; border-radius: 4px; }
+        .players-title { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; padding: 0 10px; }
+        .player-info { position: relative; display: grid; grid-template-columns: 14px 1fr auto; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; }
+        .player-info + .player-info { margin-top: 2px; }
+        .player-info.is-current { background: var(--raised-2); }
+        .player-color { width: 14px; height: 14px; border-radius: 3px; }
         .player-name { font-weight: 600; font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .player-stats { font-size: 12px; color: var(--muted); text-align: right; white-space: nowrap; }
+        .player-stats { font-size: 13px; color: var(--muted); text-align: right; white-space: nowrap; }
         .player-stats b { color: var(--text); font-weight: 600; }
-        .player-bar { grid-column: 2 / 4; height: 4px; border-radius: 4px; background: rgba(255,255,255,0.08); overflow: hidden; }
-        .player-bar > i { display: block; height: 100%; border-radius: 4px; }
+        .player-bar { grid-column: 2 / 4; height: 3px; border-radius: 2px; background: rgba(255,255,255,0.08); overflow: hidden; }
+        .player-bar > i { display: block; height: 100%; }
         .panel-footer { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
-        .questions-left { grid-column: 1 / 3; font-size: 12px; color: var(--muted); text-align: center; margin-top: 2px; }
+        .questions-left { grid-column: 1 / 3; font-size: 13px; color: var(--muted); text-align: center; margin-top: 2px; }
         #status { display: none; }
 
         /* ---------- Etiquetas de tropas ---------- */
@@ -245,34 +239,33 @@
             transition: opacity 0.15s ease, transform 0.15s ease;
         }
         .troops-label.is-dim > div { opacity: 0.35; }
-        .troops-label.is-focus > div { transform: translate(-50%, -50%) scale(1.18); box-shadow: 0 0 0 3px rgba(255, 214, 107, 0.55), 0 4px 10px rgba(0,0,0,0.5); }
+        .troops-label.is-focus > div { transform: translate(-50%, -50%) scale(1.2); }
         .leaflet-interactive { transition: fill-opacity 0.15s ease; }
         body.attack-mode .leaflet-interactive { cursor: crosshair; }
 
         /* ---------- Pregunta ---------- */
         .question-card { max-width: 640px; }
-        .battle { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: 0.04em; }
-        .battle__side { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: rgba(0,0,0,0.3); border: 1px solid var(--line); }
-        .battle__side i { width: 12px; height: 12px; border-radius: 3px; }
-        .battle__side small { font-family: var(--font-body); color: var(--muted); font-weight: 400; }
-        .battle__vs { color: var(--gold); }
+        .battle { display: flex; align-items: center; justify-content: center; gap: 4px 10px; flex-wrap: wrap; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); font-size: 15px; }
+        .battle__side { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; }
+        .battle__side i { width: 11px; height: 11px; border-radius: 2px; }
+        .battle__side small { color: var(--muted); font-weight: 400; font-size: 14px; }
+        .battle__vs { color: var(--muted); font-style: italic; }
         #questionText { margin: 0; font-size: 23px; line-height: 1.45; text-align: center; color: #fff6e2; }
-        #answerText { margin: 20px 0 0; padding: 14px 16px; border-radius: 10px; background: rgba(212,174,90,0.12); border: 1px solid var(--line-strong); color: var(--gold-soft); font-size: 19px; text-align: center; }
-        #answerText::before { content: "Respuesta"; display: block; font-family: var(--font-display); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+        #answerText { margin: 18px 0 0; color: var(--gold-soft); font-size: 20px; font-weight: 600; text-align: center; }
         .result-buttons { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
 
         /* ---------- Tropas ---------- */
-        .province-name { text-align: center; font-family: var(--font-display); font-size: 20px; color: #fff4dc; margin-bottom: 4px; }
+        .province-name { text-align: center; font-size: 21px; font-weight: 600; color: #fff4dc; margin-bottom: 4px; }
         .troops-controls { display: flex; align-items: center; justify-content: center; gap: 22px; margin: 18px 0 4px; }
-        .troops-controls .btn { width: 48px; height: 48px; padding: 0; font-size: 24px; border-radius: 50%; }
-        #currentTroops { font-family: var(--font-display); font-size: 40px; font-weight: 700; min-width: 64px; text-align: center; color: var(--gold-soft); }
+        .troops-controls .btn { width: 46px; height: 46px; padding: 0; font-size: 24px; }
+        #currentTroops { font-size: 40px; font-weight: 700; min-width: 64px; text-align: center; color: var(--gold-soft); }
 
         /* ---------- Victoria ---------- */
         .victory-card { max-width: 520px; text-align: center; }
-        #victoryTitle { font-family: var(--font-display); font-weight: 900; font-size: 44px; letter-spacing: 0.08em; margin: 0; background: linear-gradient(180deg, #f7e6b4 10%, #c99a3e 90%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        #victoryTitle { font-family: var(--font-display); font-weight: 900; font-size: 44px; letter-spacing: 0.08em; margin: 0; color: var(--gold-soft); }
         #victoryBadge { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 22px 0 6px; }
-        #victoryColor { width: 64px; height: 64px; border-radius: 14px; box-shadow: 0 0 0 3px rgba(255,255,255,0.2), 0 10px 24px rgba(0,0,0,0.5); }
-        #victoryName { font-family: var(--font-display); font-size: 26px; font-weight: 700; text-align: left; }
+        #victoryColor { width: 56px; height: 56px; border-radius: 8px; }
+        #victoryName { font-size: 24px; font-weight: 600; text-align: left; }
         #victoryDetails { color: var(--muted); text-align: left; margin-top: 4px; }
 
         @media (max-width: 700px) {
@@ -297,7 +290,6 @@
                     Volver
                 </button>
                 <header class="brand">
-                    <p class="eyebrow">Risk del Imperio Romano</p>
                     <h1>AQUILAE</h1>
                     <div class="rule" aria-hidden="true"></div>
                 </header>
@@ -323,7 +315,7 @@
                     <div class="setup-section__head"><h2>Preguntas</h2></div>
                     <div class="questions-box">
                         <button id="loadQuestionsButton" type="button" class="btn">Cargar preguntas</button>
-                        <p id="questionsStatus" class="questions-status">Carga un archivo JSON con preguntas antes de empezar.</p>
+                        <p id="questionsStatus" class="questions-status"></p>
                     </div>
                     <p class="questions-extra">
                         <button type="button" id="sampleQuestionsBtn" class="link-btn">Usar las preguntas de ejemplo sobre Roma</button>
@@ -341,7 +333,7 @@
                 <div class="turn">
                     <div class="turn__chip" id="turnChip"></div>
                     <div>
-                        <p class="eyebrow">Turno de</p>
+                        <p class="label">Turno de</p>
                         <div class="turn__name" id="currentPlayer"></div>
                     </div>
                 </div>
@@ -353,7 +345,6 @@
                     <button id="nextTurn" class="btn" type="button">Pasar turno</button>
                 </div>
                 <div class="attack-panel" id="attackPanel">
-                    <p class="eyebrow">Elegir ataque</p>
                     <label class="field"><span>Provincia atacante</span><select id="attackerProvince"></select></label>
                     <label class="field"><span>Provincia objetivo</span><select id="targetProvince"></select></label>
                     <p class="attack-panel__note" id="attackNote"></p>
@@ -383,7 +374,6 @@
     <div id="initialOverlay" class="modal" style="display:flex;">
         <div class="card modal-content welcome-card">
             <header class="brand">
-                <p class="eyebrow">Risk del Imperio Romano</p>
                 <h1>AQUILAE</h1>
                 <p>Conquista el Imperio respondiendo preguntas.</p>
             </header>
@@ -397,8 +387,8 @@
 
     <div id="troopsModal" class="modal">
         <div class="card modal-content" style="max-width:380px;">
-            <p class="eyebrow" style="text-align:center;">Ajustar tropas</p>
             <div class="province-name" id="selectedProvince"></div>
+            <p class="label" style="text-align:center;">Tropas</p>
             <div class="troops-controls">
                 <button id="decreaseTroops" class="btn" aria-label="Quitar una tropa">−</button>
                 <span id="currentTroops"></span>
@@ -417,16 +407,15 @@
             <p id="answerText" style="display:none;"></p>
             <div class="result-buttons">
                 <button id="showAnswer" class="btn btn--primary btn--lg">Mostrar respuesta</button>
-                <button id="attackSuccess" class="btn btn--success" style="display:none;">✓ Acierto · conquistar</button>
-                <button id="attackFailure" class="btn btn--danger" style="display:none;">✗ Fallo</button>
-                <button id="repeatQuestion" class="btn btn--ghost" style="display:none;">↻ Otra pregunta</button>
+                <button id="attackSuccess" class="btn btn--success" style="display:none;">Acierto</button>
+                <button id="attackFailure" class="btn btn--danger" style="display:none;">Fallo</button>
+                <button id="repeatQuestion" class="btn btn--ghost" style="display:none;">Otra pregunta</button>
             </div>
         </div>
     </div>
 
     <div id="victoryModal" class="modal">
         <div class="card modal-content victory-card">
-            <p class="eyebrow">Fin de la partida</p>
             <h1 id="victoryTitle">¡Victoria!</h1>
             <div id="victoryBadge">
                 <div id="victoryColor"></div>
@@ -522,13 +511,47 @@
         let answerRevealed = false;      // si ya se ha mostrado su respuesta
         let hoveredProvince = null;
 
+        // Vecinas por tierra de cada provincia. El mapa no cambia durante la partida, así que se
+        // calcula una sola vez (comparar polígonos con Turf es lo más caro de todo el juego).
+        const landNeighborsCache = new Map();
+        const bboxCache = new Map();
+        function bboxOf(feature) {
+            let box = bboxCache.get(feature);
+            if (!box) { box = turf.bbox(feature); bboxCache.set(feature, box); }
+            return box;
+        }
+        function bboxesOverlap(a, b) {
+            const eps = 1e-6;
+            return a[0] <= b[2] + eps && b[0] <= a[2] + eps && a[1] <= b[3] + eps && b[1] <= a[3] + eps;
+        }
+        function landNeighbors(feature) {
+            let set = landNeighborsCache.get(feature);
+            if (set) return set;
+            set = new Set();
+            const box = bboxOf(feature);
+            for (const other of provinces) {
+                if (other === feature) continue;
+                const known = landNeighborsCache.get(other);
+                if (known) { if (known.has(feature)) set.add(other); continue; }
+                if (!bboxesOverlap(box, bboxOf(other))) continue;  // descarte rápido antes de Turf
+                try { if (turf.booleanIntersects(feature, other)) set.add(other); } catch (e) {}
+            }
+            landNeighborsCache.set(feature, set);
+            return set;
+        }
+        // Precalcular en segundo plano, a trozos, para no bloquear la pantalla de inicio
+        function warmLandNeighbors() {
+            let i = 0;
+            (function step() {
+                const start = performance.now();
+                while (i < provinces.length && performance.now() - start < 12) landNeighbors(provinces[i++]);
+                if (i < provinces.length) setTimeout(step, 0);
+            })();
+        }
+
         function isValidTarget(attacker, target) {
             if (!attacker || !target || target === attacker || target.owner === currentPlayerIndex) return false;
-            try {
-                return turf.booleanIntersects(attacker, target) || areConnectedBySea(attacker, target);
-            } catch (e) {
-                return false;
-            }
+            return landNeighbors(attacker).has(target) || areConnectedBySea(attacker, target);
         }
         // Solo cuentan las provincias con 2+ tropas que tengan algún enemigo al lado
         function computeAttackSources() {
@@ -627,7 +650,7 @@
             document.getElementById('confirmAttack').disabled = !(attackFrom && attackTarget);
             document.getElementById('attackNote').textContent = attackSources.size === 0
                 ? 'No tienes provincias con al menos 2 tropas junto a un enemigo.'
-                : 'También puedes pulsar las provincias en el mapa.';
+                : '';
         }
 
         function enterAttackMode() {
@@ -761,7 +784,7 @@
 
         function clearQuestionsState(options) {
             const opts = {
-                statusMessage: 'Carga un archivo JSON con preguntas antes de empezar.',
+                statusMessage: '',
                 statusType: 'pending',
                 keepStatus: false,
                 ...options
@@ -1169,6 +1192,7 @@
 
                 mapReady = true;
                 updateStartGameState();
+                warmLandNeighbors();
 
                 // Conexiones marítimas / puentes entre provincias (ataques permitidos a distancia)
                 const seaConnections = [
@@ -1461,7 +1485,7 @@
                 return;
             }
             if (!questionsReady || questions.length === 0) {
-                alert('Carga un archivo JSON de preguntas antes de iniciar la partida.');
+                alert('Carga las preguntas antes de iniciar la partida.');
                 return;
             }
             const num = Number.parseInt(document.getElementById('numPlayers').value);
@@ -1513,7 +1537,7 @@
             const frag = document.createDocumentFragment();
             const title = document.createElement('div');
             title.className = 'players-title';
-            title.innerHTML = '<p class="eyebrow">Equipos</p><p class="eyebrow" style="color:var(--muted)">Prov. · Tropas</p>';
+            title.innerHTML = '<p class="label">Equipos</p><p class="label">provincias · tropas</p>';
             frag.appendChild(title);
             const totalProvinces = provinces.length || 1;
             players.forEach((player, index) => {
