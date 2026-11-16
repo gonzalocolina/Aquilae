@@ -188,10 +188,16 @@
         .action-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
         .action-row .btn { padding: 11px 8px; white-space: nowrap; font-size: 13px; }
         body.phase-welcome #gameUI { display: none; }
-        .attack-hint { display: none; margin-top: 12px; padding: 12px 14px; border-radius: 10px; background: rgba(155, 42, 32, 0.22); border: 1px solid rgba(255, 120, 100, 0.35); font-size: 14px; line-height: 1.45; }
-        .attack-hint.is-visible { display: block; }
-        .attack-hint__step { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.18em; color: #ffb3a3; text-transform: uppercase; margin-bottom: 4px; }
-        .attack-hint__actions { display: flex; gap: 14px; margin-top: 10px; font-size: 13px; }
+        .attack-panel { display: none; margin-top: 12px; padding: 14px; border-radius: 10px; background: rgba(155, 42, 32, 0.16); border: 1px solid rgba(255, 120, 100, 0.3); }
+        .attack-panel.is-visible { display: block; }
+        .attack-panel .eyebrow { color: #ffb3a3; margin-bottom: 10px; }
+        .attack-panel .field { margin-bottom: 10px; }
+        .attack-panel select { font-size: 14px; padding: 8px 10px; }
+        .attack-panel select:disabled { opacity: 0.55; }
+        .attack-panel__note { font-size: 12.5px; line-height: 1.4; color: var(--muted); margin: 2px 0 12px; }
+        .attack-panel__actions { display: grid; grid-template-columns: auto 1fr; gap: 8px; }
+        .attack-panel__actions .btn { white-space: nowrap; padding: 9px 10px; letter-spacing: 0.02em; min-width: 0; }
+        #attack[aria-pressed="true"] { box-shadow: inset 0 2px 6px rgba(0,0,0,0.45); border-color: var(--gold-soft); }
         #playersList { margin-top: 18px; }
         .players-title { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
         .player-info { position: relative; display: grid; grid-template-columns: 14px 1fr auto; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 10px; border: 1px solid transparent; }
@@ -325,12 +331,14 @@
                     </button>
                     <button id="nextTurn" class="btn" type="button">Pasar turno</button>
                 </div>
-                <div class="attack-hint" id="attackHint" role="status">
-                    <div class="attack-hint__step" id="attackHintStep">Paso 1 de 2</div>
-                    <div id="attackHintText">Pulsa en el mapa la provincia desde la que atacas.</div>
-                    <div class="attack-hint__actions">
-                        <button type="button" class="link-btn" id="cancelAttackMode">Cancelar</button>
-                        <button type="button" class="link-btn" id="attackListBtn">Elegir de una lista</button>
+                <div class="attack-panel" id="attackPanel">
+                    <p class="eyebrow">Elegir ataque</p>
+                    <label class="field"><span>Provincia atacante</span><select id="attackerProvince"></select></label>
+                    <label class="field"><span>Provincia objetivo</span><select id="targetProvince"></select></label>
+                    <p class="attack-panel__note" id="attackNote"></p>
+                    <div class="attack-panel__actions">
+                        <button id="closeAttack" class="btn btn--ghost btn--small" type="button">Cancelar</button>
+                        <button id="confirmAttack" class="btn btn--primary btn--small" type="button" disabled>Confirmar ataque</button>
                     </div>
                 </div>
                 <div id="status"></div>
@@ -377,18 +385,6 @@
             </div>
             <div class="modal-buttons">
                 <button id="closeTroops" class="btn btn--primary">Hecho</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="attackModal" class="modal">
-        <div class="card modal-content">
-            <h3>Atacar</h3>
-            <label class="field"><span>Provincia atacante</span><select id="attackerProvince"></select></label>
-            <label class="field"><span>Provincia objetivo</span><select id="targetProvince"></select></label>
-            <div class="modal-buttons">
-                <button id="closeAttack" class="btn btn--ghost">Cancelar</button>
-                <button id="confirmAttack" class="btn btn--primary">Confirmar ataque</button>
             </div>
         </div>
     </div>
@@ -494,16 +490,15 @@
         const fixedColors = ['#C8372D', '#2E6DB4', '#3C8C3F', '#8A4FB8']; // Rojo, Azul, Verde, Púrpura
         const NEUTRAL_FILL = '#d8c69a';
 
-        // Estado del ataque con clic en el mapa
-        let attackMode = false;      // true mientras se eligen provincias en el mapa
-        let attackFrom = null;       // provincia atacante elegida
-        let attackTargets = new Set(); // provincias que se pueden atacar desde attackFrom
-        let pendingAttack = null;    // { attacker, target } del ataque en curso
+        // Estado del ataque (se elige en el panel lateral o pulsando en el mapa)
+        let attackMode = false;          // true mientras se está eligiendo un ataque
+        let attackFrom = null;           // provincia atacante elegida
+        let attackTarget = null;         // provincia objetivo elegida en el panel
+        let attackTargets = new Set();   // provincias que se pueden atacar desde attackFrom
+        let attackSources = new Set();   // provincias propias desde las que se puede atacar
+        let pendingAttack = null;        // { attacker, target } del ataque en curso
         let hoveredProvince = null;
 
-        function canAttackFrom(prov) {
-            return prov && prov.owner === currentPlayerIndex && prov.troops >= 2;
-        }
         function isValidTarget(attacker, target) {
             if (!attacker || !target || target === attacker || target.owner === currentPlayerIndex) return false;
             try {
@@ -511,6 +506,20 @@
             } catch (e) {
                 return false;
             }
+        }
+        // Solo cuentan las provincias con 2+ tropas que tengan algún enemigo al lado
+        function computeAttackSources() {
+            attackSources = new Set(provinces.filter(p =>
+                p.owner === currentPlayerIndex && p.troops >= 2 && provinces.some(t => isValidTarget(p, t))));
+        }
+        function canAttackFrom(prov) {
+            return attackSources.has(prov);
+        }
+        function provinceByName(name) {
+            return provinces.find(p => p.properties && p.properties.name === name) || null;
+        }
+        function sortedByName(list) {
+            return [...list].sort((a, b) => a.properties.name.localeCompare(b.properties.name, 'es', { sensitivity: 'base' }));
         }
 
         // Estilo de cada provincia según el estado de la partida
@@ -527,6 +536,8 @@
             if (attackMode) {
                 if (feature === attackFrom) {
                     Object.assign(style, { weight: 4, color: '#ffd66b', fillOpacity: 0.88 });
+                } else if (feature === attackTarget) {
+                    Object.assign(style, { weight: 4.5, color: '#ff6a52', fillOpacity: 0.95 });
                 } else if (attackFrom && attackTargets.has(feature)) {
                     Object.assign(style, { weight: 3.5, color: '#ff6a52', fillOpacity: 0.85, dashArray: '7 5' });
                 } else if (!attackFrom && canAttackFrom(feature)) {
@@ -556,57 +567,96 @@
                     || prov === attackFrom
                     || (attackFrom ? attackTargets.has(prov) : canAttackFrom(prov));
                 el.classList.toggle('is-dim', !relevant);
-                el.classList.toggle('is-focus', attackMode && (prov === attackFrom || (attackFrom && attackTargets.has(prov))));
+                el.classList.toggle('is-focus', attackMode && (prov === attackFrom || prov === attackTarget || (attackFrom && attackTargets.has(prov))));
             });
         }
 
-        function setAttackHint(step, text) {
-            document.getElementById('attackHintStep').textContent = step;
-            document.getElementById('attackHintText').textContent = text;
+        function fillSelect(select, provincesList, placeholder, selected) {
+            select.innerHTML = '';
+            const first = document.createElement('option');
+            first.value = '';
+            first.textContent = placeholder;
+            select.appendChild(first);
+            provincesList.forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = p.properties.name;
+                opt.textContent = `${p.properties.name} (${p.troops})`;
+                select.appendChild(opt);
+            });
+            select.value = selected ? selected.properties.name : '';
+        }
+
+        // Sincroniza el panel lateral con lo elegido (desde el panel o desde el mapa)
+        function renderAttackPanel() {
+            const attackerSelect = document.getElementById('attackerProvince');
+            const targetSelect = document.getElementById('targetProvince');
+            fillSelect(attackerSelect, sortedByName(attackSources), 'Elige provincia…', attackFrom);
+            attackerSelect.disabled = attackSources.size === 0;
+            if (attackFrom) {
+                fillSelect(targetSelect, sortedByName(attackTargets), 'Elige objetivo…', attackTarget);
+                targetSelect.disabled = false;
+            } else {
+                fillSelect(targetSelect, [], 'Primero elige la atacante', null);
+                targetSelect.disabled = true;
+            }
+            document.getElementById('confirmAttack').disabled = !(attackFrom && attackTarget);
+            document.getElementById('attackNote').textContent = attackSources.size === 0
+                ? 'No tienes provincias con al menos 2 tropas junto a un enemigo.'
+                : 'También puedes pulsar las provincias en el mapa.';
         }
 
         function enterAttackMode() {
-            const player = players[currentPlayerIndex];
-            if (!player) return;
+            if (!players[currentPlayerIndex]) return;
             attackMode = true;
             attackFrom = null;
+            attackTarget = null;
             attackTargets = new Set();
+            computeAttackSources();
             document.body.classList.add('attack-mode');
-            document.getElementById('attackHint').classList.add('is-visible');
-            if (!player.provinces.some(canAttackFrom)) {
-                setAttackHint('Sin ataques posibles', 'Necesitas una provincia con al menos 2 tropas para atacar.');
-            } else {
-                setAttackHint('Paso 1 de 2', 'Pulsa en el mapa la provincia desde la que atacas (resaltadas en dorado).');
-            }
+            document.getElementById('attack').setAttribute('aria-pressed', 'true');
+            document.getElementById('attackPanel').classList.add('is-visible');
+            renderAttackPanel();
             refreshMap();
         }
 
         function exitAttackMode() {
             attackMode = false;
             attackFrom = null;
+            attackTarget = null;
             attackTargets = new Set();
+            attackSources = new Set();
             document.body.classList.remove('attack-mode');
-            document.getElementById('attackHint').classList.remove('is-visible');
+            document.getElementById('attack').setAttribute('aria-pressed', 'false');
+            document.getElementById('attackPanel').classList.remove('is-visible');
             refreshMap();
         }
 
+        function setAttacker(feature) {
+            attackFrom = feature;
+            attackTarget = null;
+            attackTargets = feature ? new Set(provinces.filter(p => isValidTarget(feature, p))) : new Set();
+            renderAttackPanel();
+            refreshMap();
+        }
+
+        function setTarget(feature) {
+            attackTarget = feature;
+            renderAttackPanel();
+            refreshMap();
+        }
+
+        function launchAttack(attacker, target) {
+            exitAttackMode();
+            pendingAttack = { attacker: attacker, target: target };
+            showQuestion(attacker, target);
+        }
+
+        // Clic en el mapa: elegir atacante, o lanzar el ataque al pulsar un objetivo válido
         function handleAttackClick(feature) {
             if (canAttackFrom(feature)) {
-                attackFrom = feature;
-                attackTargets = new Set(provinces.filter(p => isValidTarget(feature, p)));
-                if (attackTargets.size === 0) {
-                    setAttackHint('Paso 1 de 2', `${feature.properties.name} no tiene provincias enemigas al lado. Elige otra.`);
-                } else {
-                    setAttackHint('Paso 2 de 2', `Atacas desde ${feature.properties.name}. Pulsa la provincia enemiga que quieres conquistar.`);
-                }
-                refreshMap();
-                return;
-            }
-            if (attackFrom && attackTargets.has(feature)) {
-                const attacker = attackFrom;
-                exitAttackMode();
-                pendingAttack = { attacker: attacker, target: feature };
-                showQuestion(attacker, feature);
+                setAttacker(feature);
+            } else if (attackFrom && attackTargets.has(feature)) {
+                launchAttack(attackFrom, feature);
             }
         }
 
@@ -1523,85 +1573,23 @@
             document.getElementById('troopsModal').style.display = 'none';
         });
 
-        // Ataque: por defecto se eligen las provincias pulsando en el mapa
+        // Ataque: se elige en el panel lateral o pulsando en el mapa
         document.getElementById('attack').addEventListener('click', function() {
             if (attackMode) exitAttackMode();
             else enterAttackMode();
         });
-        document.getElementById('cancelAttackMode').addEventListener('click', exitAttackMode);
-        document.getElementById('attackListBtn').addEventListener('click', function() {
-            exitAttackMode();
-            openAttackList();
-        });
+        document.getElementById('closeAttack').addEventListener('click', exitAttackMode);
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && attackMode) exitAttackMode();
         });
-
-        // Alternativa: elegir atacante y objetivo en desplegables
-        function openAttackList() {
-            const attackerSelect = document.getElementById('attackerProvince');
-            const targetSelect = document.getElementById('targetProvince');
-            // limpiar selects
-            while (attackerSelect.firstChild) attackerSelect.removeChild(attackerSelect.firstChild);
-            while (targetSelect.firstChild) targetSelect.removeChild(targetSelect.firstChild);
-            // Recolectar y ordenar alfabeticamente las provincias atacantes, mostrando tropas
-            const attackerOptions = (players[currentPlayerIndex] && players[currentPlayerIndex].provinces || [])
-                .filter(p => p.troops >= 2)
-                .map(p => ({ name: p.properties && p.properties.name, troops: p.troops }))
-                .filter(o => o.name)
-                .sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }));
-
-            attackerOptions.forEach(o => {
-                const opt = document.createElement('option');
-                opt.value = o.name;
-                opt.textContent = `${o.name} (${o.troops})`;
-                attackerSelect.appendChild(opt);
-            });
-            // Seleccionar el primer atacante válido y forzar el change para poblar targets
-            if (attackerSelect.options.length > 0) {
-                attackerSelect.selectedIndex = 0;
-                attackerSelect.dispatchEvent(new Event('change'));
-            }
-            // targetSelect se llena cuando se selecciona attacker
-            document.getElementById('attackModal').style.display = 'flex';
-        }
-
-        // Event listener para actualizar targets cuando cambia attacker
         document.getElementById('attackerProvince').addEventListener('change', function() {
-            const selectedAttackerName = this.value;
-            const attacker = provinces.find(p => p.properties.name === selectedAttackerName);
-            const targetSelect = document.getElementById('targetProvince');
-            // limpiar options previas
-            while (targetSelect.firstChild) targetSelect.removeChild(targetSelect.firstChild);
-            if (!attacker) return;
-            // Recolectar objetivos válidos y ordenarlos alfabéticamente, mostrando tropas
-            const targetOptions = provinces
-                .filter(prov => prov.owner !== currentPlayerIndex && (turf.booleanIntersects(attacker, prov) || areConnectedBySea(attacker, prov)))
-                .map(p => ({ name: p.properties && p.properties.name, troops: p.troops }))
-                .filter(o => o.name)
-                .sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }));
-            targetOptions.forEach(o => {
-                const opt = document.createElement('option');
-                opt.value = o.name;
-                opt.textContent = `${o.name} (${o.troops})`;
-                targetSelect.appendChild(opt);
-            });
+            setAttacker(provinceByName(this.value));
         });
-
+        document.getElementById('targetProvince').addEventListener('change', function() {
+            setTarget(provinceByName(this.value));
+        });
         document.getElementById('confirmAttack').addEventListener('click', function() {
-            const attackerName = document.getElementById('attackerProvince').value;
-            const targetName = document.getElementById('targetProvince').value;
-            const attacker = provinces.find(p => p.properties.name === attackerName);
-            const target = provinces.find(p => p.properties.name === targetName);
-            if (attacker && target) {
-                document.getElementById('attackModal').style.display = 'none';
-                pendingAttack = { attacker: attacker, target: target };
-                showQuestion(attacker, target);
-            }
-        });
-
-        document.getElementById('closeAttack').addEventListener('click', function() {
-            document.getElementById('attackModal').style.display = 'none';
+            if (attackFrom && attackTarget) launchAttack(attackFrom, attackTarget);
         });
 
         document.getElementById('nextTurn').addEventListener('click', function() {

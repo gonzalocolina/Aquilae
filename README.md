@@ -16,15 +16,15 @@ Juego de estrategia por turnos en el navegador para repasar Historia de Roma y L
 
 1. Se eligen de 2 a 4 equipos y se cargan las preguntas (un archivo propio o el banco de ejemplo).
 2. Las provincias se reparten al azar y cada una empieza con 3 tropas.
-3. En su turno, un equipo pulsa **Atacar** y elige en el mapa una de sus provincias con al menos 2 tropas. El juego resalta las provincias enemigas vecinas que puede atacar, por tierra o por ruta marítima, y el equipo pulsa la que quiere conquistar. También se puede elegir desde una lista.
+3. En su turno, un equipo pulsa **Atacar** y elige una de sus provincias con al menos 2 tropas y la provincia enemiga vecina que quiere conquistar, por tierra o por ruta marítima. Se puede hacer pulsando en el mapa, que resalta los objetivos posibles, o con los desplegables del panel lateral. Las dos vías están sincronizadas.
 4. Sale una pregunta. El docente muestra la respuesta y marca si ha sido un **acierto** (se conquista la provincia) o un **fallo** (la provincia atacante se queda con 1 tropa).
 5. Gana quien conquiste todo el Imperio. Si se acaban las preguntas, gana el equipo con más tropas.
 
 El docente puede ajustar las tropas de cualquier provincia pulsándola, y la partida se puede guardar en un archivo para retomarla en la siguiente clase.
 
-| Elegir el ataque en el mapa | Pregunta y respuesta |
+| Elegir el ataque (mapa o panel) | Pregunta y respuesta |
 |---|---|
-| ![Ataque desde Germania con los objetivos posibles resaltados](docs/capturas/03-ataque.jpg) | ![Pregunta durante un ataque](docs/capturas/04-pregunta.jpg) |
+| ![Ataque elegido en el panel lateral, con la atacante y los objetivos posibles resaltados en el mapa](docs/capturas/03-ataque.jpg) | ![Pregunta durante un ataque](docs/capturas/04-pregunta.jpg) |
 
 ![Configuración de la partida](docs/capturas/01-inicio.jpg)
 
