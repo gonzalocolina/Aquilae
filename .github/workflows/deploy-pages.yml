@@ -26,6 +26,7 @@ jobs:
           mkdir -p site/editor
           cp Aquilae.html site/index.html
           cp editor-preguntas.html site/editor/index.html
+          cp -r ejemplos site/ejemplos
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4

@@ -1,0 +1,1247 @@
+[
+  {
+    "id": "roma-001",
+    "pregunta": "¿Qué héroe es considerado el progenitor del pueblo romano?",
+    "respuesta": "Eneas"
+  },
+  {
+    "id": "roma-002",
+    "pregunta": "¿De qué ciudad provenía Eneas?",
+    "respuesta": "De Troya"
+  },
+  {
+    "id": "roma-003",
+    "pregunta": "¿Quién fue el primer rey de Roma?",
+    "respuesta": "Rómulo"
+  },
+  {
+    "id": "roma-004",
+    "pregunta": "¿De qué divinidad era hijo Eneas?",
+    "respuesta": "Venus"
+  },
+  {
+    "id": "roma-005",
+    "pregunta": "¿Qué reina púnica tubo un romance con Eneas?",
+    "respuesta": "Dido"
+  },
+  {
+    "id": "roma-006",
+    "pregunta": "¿Quién fundó Alba Longa?",
+    "respuesta": "Iulio Ascanio, el hijo de Eneas"
+  },
+  {
+    "id": "roma-007",
+    "pregunta": "¿De qué ciudad provenían los fundadores de Roma?",
+    "respuesta": "Alba Longa"
+  },
+  {
+    "id": "roma-008",
+    "pregunta": "¿Qué año se fundó Roma?",
+    "respuesta": "753 a.C."
+  },
+  {
+    "id": "roma-009",
+    "pregunta": "¿De qué divinidad eran hijos Rómulo y Remo?",
+    "respuesta": "De Marte"
+  },
+  {
+    "id": "roma-010",
+    "pregunta": "¿Quién alimentó a Rómulo y Remo?",
+    "respuesta": "La loba Luperca"
+  },
+  {
+    "id": "roma-011",
+    "pregunta": "¿Qué era el pomerium?",
+    "respuesta": "La línea sagrada que delimitaba el núcleo religioso y político de la ciudad de Roma"
+  },
+  {
+    "id": "roma-012",
+    "pregunta": "¿Sobre qué colina se fundó Roma?",
+    "respuesta": "El Palatino"
+  },
+  {
+    "id": "roma-013",
+    "pregunta": "¿Cómo consiguió mujeres Roma en sus orígenes?",
+    "respuesta": "Mediante el rapto de las sabinas"
+  },
+  {
+    "id": "roma-014",
+    "pregunta": "¿Cuántos reyes tubo Roma?",
+    "respuesta": "7"
+  },
+  {
+    "id": "roma-015",
+    "pregunta": "¿Cuál era el puerto más importante de Roma?",
+    "respuesta": "Ostia"
+  },
+  {
+    "id": "roma-016",
+    "pregunta": "¿Bajo qué reinado se construyó el Circo Máximo?",
+    "respuesta": "Bajo el reinado de Tarquinio Prisco"
+  },
+  {
+    "id": "roma-017",
+    "pregunta": "¿Qué templo coronaba la colina Capitolina?",
+    "respuesta": "El templo de Júpiter Óptimo Máximo"
+  },
+  {
+    "id": "roma-018",
+    "pregunta": "¿Qué divinidades conformaban la Triada Capitolina?",
+    "respuesta": "Júpiter, Juno y Minerva"
+  },
+  {
+    "id": "roma-019",
+    "pregunta": "¿Quién fue el último rey de Roma?",
+    "respuesta": "Tarquinio el Soberbio"
+  },
+  {
+    "id": "roma-020",
+    "pregunta": "¿En qué año se proclamó la República?",
+    "respuesta": "509 a.C."
+  },
+  {
+    "id": "roma-021",
+    "pregunta": "¿Cuáles son las cuatro magistraturas principales del cursus honorum?",
+    "respuesta": "Cuestor, edil, pretor y cónsul"
+  },
+  {
+    "id": "roma-022",
+    "pregunta": "¿Qué dos tipos de ciudadanos había en Roma?",
+    "respuesta": "Patricios y plebeyos"
+  },
+  {
+    "id": "roma-023",
+    "pregunta": "¿A quiénes se consideraba miembros de la familia romana?",
+    "respuesta": "Pater familias, mater familias, hijos y descendencia, esclavos y clientes"
+  },
+  {
+    "id": "roma-024",
+    "pregunta": "¿Qué otras civilizaciones convivían con Roma en la península itálica durante la República temprana?",
+    "respuesta": "Los etruscos y los griegos"
+  },
+  {
+    "id": "roma-025",
+    "pregunta": "¿Qué poder particular tenían los tribunos de la plebe?",
+    "respuesta": "El derecho de veto contra las acciones de los cónsules y el Senado"
+  },
+  {
+    "id": "roma-026",
+    "pregunta": "¿En qué año ocurrió el primer saqueo galo de Roma?",
+    "respuesta": "390 a.C."
+  },
+  {
+    "id": "roma-027",
+    "pregunta": "¿Cómo murió Tarpeya?",
+    "respuesta": "Fue sepultada por escudos"
+  },
+  {
+    "id": "roma-028",
+    "pregunta": "¿Qué hacían los romanos en la roca Tarpeya?",
+    "respuesta": "Ejecutar a los enemigos del estado, arrojándolos desde la cima"
+  },
+  {
+    "id": "roma-029",
+    "pregunta": "¿Qué rey griego intentó conquistar la península itálica en el siglo III a.C.?",
+    "respuesta": "Pirro de Epiro"
+  },
+  {
+    "id": "roma-030",
+    "pregunta": "¿La conquista de qué ciudad marcó el final de la resistencia griega en el sur de la península itálica?",
+    "respuesta": "Tarento"
+  },
+  {
+    "id": "roma-031",
+    "pregunta": "¿Cuántas guerras púnicas hubo?",
+    "respuesta": "3"
+  },
+  {
+    "id": "roma-032",
+    "pregunta": "¿De qué civilización era colonia Cartago?",
+    "respuesta": "Los fenicios"
+  },
+  {
+    "id": "roma-033",
+    "pregunta": "¿Dónde se desarrolló la Primera Guerra Púnica?",
+    "respuesta": "En Sicilia"
+  },
+  {
+    "id": "roma-034",
+    "pregunta": "¿Quién fue el líder de los cartagineses en la Segunda Guerra Púnica?",
+    "respuesta": "Aníbal Barca"
+  },
+  {
+    "id": "roma-035",
+    "pregunta": "¿Qué daño corporal sufrió el propio Aníbal durante la conquista de la península itálica?",
+    "respuesta": "Perdió un ojo"
+  },
+  {
+    "id": "roma-036",
+    "pregunta": "Nombra 3 batallas de la Segunda Guerra Púnica",
+    "respuesta": "Tesino, Trebia, Trasimenos, Cannas, Zama…"
+  },
+  {
+    "id": "roma-037",
+    "pregunta": "¿En qué género literario destacaron Plauto y Terencio?",
+    "respuesta": "En la comedia palliata"
+  },
+  {
+    "id": "roma-038",
+    "pregunta": "¿Qué ciudad hispana se defendió tenazmente de la conquista romana?",
+    "respuesta": "Numancia"
+  },
+  {
+    "id": "roma-039",
+    "pregunta": "¿Por qué fue asesinado Tiberio Graco?",
+    "respuesta": "Por intentar realizar una reforma agraria"
+  },
+  {
+    "id": "roma-040",
+    "pregunta": "¿Qué corriente filosófica defendía Lucrecio?",
+    "respuesta": "El epicureísmo"
+  },
+  {
+    "id": "roma-041",
+    "pregunta": "¿Quién fue el romano con más consulados en toda la República?",
+    "respuesta": "Cayo Mario (7)"
+  },
+  {
+    "id": "roma-042",
+    "pregunta": "¿Qué dos bandos políticos había en la República tardía?",
+    "respuesta": "Optimates y populares"
+  },
+  {
+    "id": "roma-043",
+    "pregunta": "¿Quiénes se enfrentaron en la Primera Guerra Civil?",
+    "respuesta": "Cayo Mario y Lucio Cornelio Sila"
+  },
+  {
+    "id": "roma-044",
+    "pregunta": "¿Quién sofocó la revuelta de los socii?",
+    "respuesta": "Sila"
+  },
+  {
+    "id": "roma-045",
+    "pregunta": "¿Quién lideró una revuelta esclavista?",
+    "respuesta": "Espartaco"
+  },
+  {
+    "id": "roma-046",
+    "pregunta": "¿Quiénes conformaron el primer Triunvirato?",
+    "respuesta": "Julio César, Pompeyo Magno y Craso"
+  },
+  {
+    "id": "roma-047",
+    "pregunta": "¿Con quién se casó Julia, la hija de César?",
+    "respuesta": "Con Pompeyo"
+  },
+  {
+    "id": "roma-048",
+    "pregunta": "¿Quién detuvo el golpe de estado de Catilina?",
+    "respuesta": "Cicerón"
+  },
+  {
+    "id": "roma-049",
+    "pregunta": "¿Qué militar conquistó Judea y liberó el Mediterráneo de la piratería?",
+    "respuesta": "Pompeyo Magno"
+  },
+  {
+    "id": "roma-050",
+    "pregunta": "¿Cómo llamaban los romanos al Mediterráneo?",
+    "respuesta": "Mare Nostrum"
+  },
+  {
+    "id": "roma-051",
+    "pregunta": "¿Quién fue el mayor enemigo de César en las Galias?",
+    "respuesta": "Vercingétorix"
+  },
+  {
+    "id": "roma-052",
+    "pregunta": "¿Dónde derrotó por completo César a la coalición gala?",
+    "respuesta": "En la batalla de Alesia"
+  },
+  {
+    "id": "roma-053",
+    "pregunta": "¿Qué cargo ocupaba César durante la conquista de las Galias?",
+    "respuesta": "El proconsulado"
+  },
+  {
+    "id": "roma-054",
+    "pregunta": "¿Cómo murió Craso?",
+    "respuesta": "Derrotado por los partos en Carras"
+  },
+  {
+    "id": "roma-055",
+    "pregunta": "¿Qué río cruzó César, marcando así el inicio de la Segunda Guerra Civil?",
+    "respuesta": "El Rubicón"
+  },
+  {
+    "id": "roma-056",
+    "pregunta": "Menciona 3 batallas de la Segunda Guerra Civil",
+    "respuesta": "Farsalia, Tapso, Alejandría, Munda, Dirraquio, Ilerda…"
+  },
+  {
+    "id": "roma-057",
+    "pregunta": "¿Cómo murió Pompeyo?",
+    "respuesta": "Traicionado y decapitado en Egipto"
+  },
+  {
+    "id": "roma-058",
+    "pregunta": "¿Cómo se llamaba el hijo de César y Cleopatra?",
+    "respuesta": "Cesarión"
+  },
+  {
+    "id": "roma-059",
+    "pregunta": "¿Quién reformó el desfasado calendario lunar romano por uno solar?",
+    "respuesta": "Julio César"
+  },
+  {
+    "id": "roma-060",
+    "pregunta": "¿Qué obras compuso César?",
+    "respuesta": "Los comentarios de la Guerra de las Galias y la Guerra Civil"
+  },
+  {
+    "id": "roma-061",
+    "pregunta": "¿En qué año fue asesinado Julio César?",
+    "respuesta": "44 a.C."
+  },
+  {
+    "id": "roma-062",
+    "pregunta": "¿Quiénes lideraron de la conspiración para asesinar a Julio César?",
+    "respuesta": "Bruto y Casio"
+  },
+  {
+    "id": "roma-063",
+    "pregunta": "¿Dónde se derrotó a los cesaricidas?",
+    "respuesta": "En la batalla de Filipos"
+  },
+  {
+    "id": "roma-064",
+    "pregunta": "¿Quiénes conformaron el segundo Triunvirato?",
+    "respuesta": "Octaviano, Marco Antonio y Lépido"
+  },
+  {
+    "id": "roma-065",
+    "pregunta": "¿Qué general comandaba las tropas de Augusto?",
+    "respuesta": "Agripa"
+  },
+  {
+    "id": "roma-066",
+    "pregunta": "¿Junto a quién cogobernó Egipto Cleopatra VII?",
+    "respuesta": "Su hermano, Ptolomeo XIII"
+  },
+  {
+    "id": "roma-067",
+    "pregunta": "¿Con quiénes tuvo un romance Cleopatra VII?",
+    "respuesta": "Julio César y Marco Antonio"
+  },
+  {
+    "id": "roma-068",
+    "pregunta": "¿Qué suceso marca el comienzo del Imperio?",
+    "respuesta": "La batalla de Accio"
+  },
+  {
+    "id": "roma-069",
+    "pregunta": "¿En qué año se produjo la batalla de Accio?",
+    "respuesta": "31 a.C."
+  },
+  {
+    "id": "roma-070",
+    "pregunta": "¿Quién ejerció como 'ministro de cultura' durante el principado de Augusto?",
+    "respuesta": "Mecenas"
+  },
+  {
+    "id": "roma-071",
+    "pregunta": "¿Quién fue nombrado princeps senatus?",
+    "respuesta": "Octavio Augusto"
+  },
+  {
+    "id": "roma-072",
+    "pregunta": "Menciona alguna obra de Virgilio",
+    "respuesta": "La Eneida, las Bucólicas o las Geórgicas"
+  },
+  {
+    "id": "roma-073",
+    "pregunta": "Menciona alguna obra de Horacio",
+    "respuesta": "Odas, Sátiras, Arte Poética o el Canto Secular"
+  },
+  {
+    "id": "roma-074",
+    "pregunta": "Menciona alguna obra de Ovidio",
+    "respuesta": "El Arte de amar, Metamorfosis, Heroidas…"
+  },
+  {
+    "id": "roma-075",
+    "pregunta": "¿Qué obra escribió Tito Livio?",
+    "respuesta": "Ab urbe condita"
+  },
+  {
+    "id": "roma-076",
+    "pregunta": "¿Dónde se produjo la mayor derrota romana en tierras germanas?",
+    "respuesta": "En el bosque de Teotoburgo"
+  },
+  {
+    "id": "roma-077",
+    "pregunta": "¿Quién fue Arminio?",
+    "respuesta": "Un líder querusco que unificó a los pueblos germánicos y derrotó a Roma en Teutoburgo"
+  },
+  {
+    "id": "roma-078",
+    "pregunta": "¿Qué emperador romano tubo el reinado más largo?",
+    "respuesta": "Augusto, quien gobernó 41 años"
+  },
+  {
+    "id": "roma-079",
+    "pregunta": "¿Bajo el mandato de qué emperador se termina de conquistar la península ibérica?",
+    "respuesta": "Bajo el mandato de Augusto"
+  },
+  {
+    "id": "roma-080",
+    "pregunta": "Nombra 3 emperadores de la dinastía Julio-Claudia",
+    "respuesta": "Augusto, Tiberio, Calígula, Claudio o Nerón"
+  },
+  {
+    "id": "roma-081",
+    "pregunta": "¿Qué era la guardia pretoriana?",
+    "respuesta": "La unidad de élite encargada de proteger a los emperadores romanos"
+  },
+  {
+    "id": "roma-082",
+    "pregunta": "¿Bajo el reinado de qué emperador se conquistó Britania?",
+    "respuesta": "Bajo el mandato de Claudio"
+  },
+  {
+    "id": "roma-083",
+    "pregunta": "¿A qué familiar mandó ejecutar Nerón?",
+    "respuesta": "A su madre Agripina la Menor"
+  },
+  {
+    "id": "roma-084",
+    "pregunta": "¿Bajo el reinado de qué emperador se produjo el incendio de Roma?",
+    "respuesta": "Bajo el mandato de Nerón"
+  },
+  {
+    "id": "roma-085",
+    "pregunta": "¿Qué corriente filosófica defendía Séneca?",
+    "respuesta": "El estoicismo"
+  },
+  {
+    "id": "roma-086",
+    "pregunta": "¿Qué obra escribió Lucano?",
+    "respuesta": "Farsalia"
+  },
+  {
+    "id": "roma-087",
+    "pregunta": "¿Quiénes se enfrentaron en el Año de los cuatro emperadores (68-69)?",
+    "respuesta": "Galba, Otón, Vitelio y Vespasiano"
+  },
+  {
+    "id": "roma-088",
+    "pregunta": "¿Qué victoria conmemora el Arco de Tito?",
+    "respuesta": "La toma de Jerusalén"
+  },
+  {
+    "id": "roma-089",
+    "pregunta": "¿Qué general conquistó Caledonia (Escocia)?",
+    "respuesta": "Agrícola"
+  },
+  {
+    "id": "roma-090",
+    "pregunta": "¿Durante el reinado de qué dinastía se construyó el Coliseo?",
+    "respuesta": "Los Flavios"
+  },
+  {
+    "id": "roma-091",
+    "pregunta": "¿Bajo el reinado de qué emperador erupcionó el Vesubio?",
+    "respuesta": "Bajo el mandato de Tito"
+  },
+  {
+    "id": "roma-092",
+    "pregunta": "¿Qué ciudades quedaron sepultadas por el monte Vesubio?",
+    "respuesta": "Pompeya y Herculano"
+  },
+  {
+    "id": "roma-093",
+    "pregunta": "¿Qué emperador estableció el limes germanicus?",
+    "respuesta": "Domiciano"
+  },
+  {
+    "id": "roma-094",
+    "pregunta": "¿Qué era la damnatio memoriae?",
+    "respuesta": "Una condena romana que buscaba borrar el legado de una persona tras su muerte o caída en desgracia"
+  },
+  {
+    "id": "roma-095",
+    "pregunta": "Nombra 3 emperadores de la dinastía Antonina",
+    "respuesta": "Nerva, Trajano, Adriano, Antonino Pío, Marco Aurelio o Cómodo"
+  },
+  {
+    "id": "roma-096",
+    "pregunta": "¿Qué emperador conquistó la Dacia?",
+    "respuesta": "Trajano"
+  },
+  {
+    "id": "roma-097",
+    "pregunta": "¿A qué territorio actual equivale la Dacia?",
+    "respuesta": "Rumanía"
+  },
+  {
+    "id": "roma-098",
+    "pregunta": "¿Qué emperador estableció Arabia y Armenia como provincias romanas?",
+    "respuesta": "Trajano"
+  },
+  {
+    "id": "roma-099",
+    "pregunta": "¿Dónde se encuentra el Muro de Adriano?",
+    "respuesta": "En la frontera entre Inglaterra y Escocia"
+  },
+  {
+    "id": "roma-100",
+    "pregunta": "¿Qué emperador erigió el Panteón de Agripa?",
+    "respuesta": "Adriano"
+  },
+  {
+    "id": "roma-101",
+    "pregunta": "¿Cuál era la capital del imperio parto?",
+    "respuesta": "Ctesifonte"
+  },
+  {
+    "id": "roma-102",
+    "pregunta": "¿Qué doctrina filosófica seguía Marco Aurelio?",
+    "respuesta": "El estoicismo"
+  },
+  {
+    "id": "roma-103",
+    "pregunta": "¿Qué emperador proclamó la Constitutio Antoniniana?",
+    "respuesta": "Caracalla"
+  },
+  {
+    "id": "roma-104",
+    "pregunta": "¿En qué consistía la Constitutio Antoniniana?",
+    "respuesta": "Concedía la ciudadanía romana a todos los hombres libres del Imperio"
+  },
+  {
+    "id": "roma-105",
+    "pregunta": "¿Qué emperador nombró un dios solar como principal deidad del panteón romano?",
+    "respuesta": "Heliogábalo"
+  },
+  {
+    "id": "roma-106",
+    "pregunta": "¿Qué emperador trajo la paz al imperio tras la crisis del siglo III?",
+    "respuesta": "Diocleciano"
+  },
+  {
+    "id": "roma-107",
+    "pregunta": "¿Durante el reinado de qué emperador se produjo la Gran persecución contra los cristianos?",
+    "respuesta": "Durante el mandato de Diocleciano"
+  },
+  {
+    "id": "roma-108",
+    "pregunta": "¿Qué fue la tetrarquía?",
+    "respuesta": "Un sistema de gobierno imperial formado por cuatro líderes: dos augustos y dos césares de menor poder"
+  },
+  {
+    "id": "roma-109",
+    "pregunta": "¿En qué año se promulgó el Edicto de Milán?",
+    "respuesta": "En el 313"
+  },
+  {
+    "id": "roma-110",
+    "pregunta": "¿En qué consistía el Edicto de Milán?",
+    "respuesta": "Garantizaba la libertad religiosa en todo el Imperio Romano"
+  },
+  {
+    "id": "roma-111",
+    "pregunta": "¿Quién promulgó el Edicto de Milán?",
+    "respuesta": "El emperador Constantino"
+  },
+  {
+    "id": "roma-112",
+    "pregunta": "¿Cuál fue el primer concilio ecuménico de la Iglesia cristiana?",
+    "respuesta": "El Concilio de Nicea (325)"
+  },
+  {
+    "id": "roma-113",
+    "pregunta": "¿A qué ciudad trasladó Constantino la capital del Imperio?",
+    "respuesta": "A Bizancio, la futura Constantinopla"
+  },
+  {
+    "id": "roma-114",
+    "pregunta": "¿En qué año se promulgó el Edicto de Tesalónica?",
+    "respuesta": "En el 381"
+  },
+  {
+    "id": "roma-115",
+    "pregunta": "¿En qué consistía el Edicto de Tesalónica?",
+    "respuesta": "Establecía el cristianismo como religión oficial del Imperio Romano"
+  },
+  {
+    "id": "roma-116",
+    "pregunta": "¿Quién promulgó el Edicto de Tesalónica?",
+    "respuesta": "El emperador Teodosio"
+  },
+  {
+    "id": "roma-117",
+    "pregunta": "¿Entre quiénes repartió el Imperio Teodosio?",
+    "respuesta": "Entre sus hijos Arcadio (Oriente) y Honorio (Occidente)"
+  },
+  {
+    "id": "roma-118",
+    "pregunta": "¿En qué año se produjo la división del Imperio romano?",
+    "respuesta": "En el 395"
+  },
+  {
+    "id": "roma-119",
+    "pregunta": "¿A dónde se trasladó la capital del Imperio romano de Occidente en el siglo V?",
+    "respuesta": "A Rávena"
+  },
+  {
+    "id": "roma-120",
+    "pregunta": "¿En qué año se produjo el saqueo de Roma por Alarico?",
+    "respuesta": "En el 410"
+  },
+  {
+    "id": "roma-121",
+    "pregunta": "¿Qué tribu bárbara conquistó el África romana?",
+    "respuesta": "Los vándalos"
+  },
+  {
+    "id": "roma-122",
+    "pregunta": "¿Quién fue Atila?",
+    "respuesta": "Fue un rey de los hunos que derrotó en repetidas ocasiones a los ejércitos romanos en el siglo V"
+  },
+  {
+    "id": "roma-123",
+    "pregunta": "¿Dónde se derrotó a Atila?",
+    "respuesta": "En la batalla de los Campos Cataláunicos (451)"
+  },
+  {
+    "id": "roma-124",
+    "pregunta": "¿Quién fue el último emperador del Imperio romano de Occidente?",
+    "respuesta": "Rómulo Augústulo"
+  },
+  {
+    "id": "roma-125",
+    "pregunta": "¿En qué año cayó el Imperio romano de Occidente?",
+    "respuesta": "En el 476"
+  },
+  {
+    "id": "roma-126",
+    "pregunta": "¿Qué líder de los hérulos depuso al último emperador del Imperio romano de Occidente?",
+    "respuesta": "Odoacro"
+  },
+  {
+    "id": "roma-127",
+    "pregunta": "¿En qué año cayó el Imperio romano de Oriente?",
+    "respuesta": "En 1453"
+  },
+  {
+    "id": "roma-128",
+    "pregunta": "¿Qué emperador del Imperio romano de Oriente intentó recuperar los territorios occidentales en el siglo VI?",
+    "respuesta": "Justiniano I"
+  },
+  {
+    "id": "roma-129",
+    "pregunta": "¿De qué era dios Jano?",
+    "respuesta": "De los comienzos y las puertas"
+  },
+  {
+    "id": "roma-130",
+    "pregunta": "¿Dónde se custodiaba el erario público de Roma?",
+    "respuesta": "En el templo de Saturno"
+  },
+  {
+    "id": "roma-131",
+    "pregunta": "Menciona 3 divinidades orientales cuyo culto se introdujo en el imperio romano",
+    "respuesta": "Isis, Mitra y Cibeles"
+  },
+  {
+    "id": "roma-132",
+    "pregunta": "¿Cuál era el animal sagrado de Juno?",
+    "respuesta": "El pavo real"
+  },
+  {
+    "id": "roma-133",
+    "pregunta": "¿De qué era dios Apolo?",
+    "respuesta": "De la música, las artes, el sol, la profecía, la poesía…"
+  },
+  {
+    "id": "roma-134",
+    "pregunta": "¿Quién era el dios de la medicina?",
+    "respuesta": "Esculapio (Asclepio)"
+  },
+  {
+    "id": "roma-135",
+    "pregunta": "¿Dónde se realizaban los desfiles y el entrenamiento militar en la Antigua Roma?",
+    "respuesta": "En el Campo de Marte"
+  },
+  {
+    "id": "roma-136",
+    "pregunta": "¿Cuál era el animal sagrado de Júpiter?",
+    "respuesta": "El águila"
+  },
+  {
+    "id": "roma-137",
+    "pregunta": "¿De qué era diosa Ceres?",
+    "respuesta": "De la agricultura"
+  },
+  {
+    "id": "roma-138",
+    "pregunta": "Menciona 3 ciudades de la Hispania romana",
+    "respuesta": "Emerita Augusta, Tarraco, Corduba, Gades, Caesar Augusta, Italica…"
+  },
+  {
+    "id": "roma-139",
+    "pregunta": "¿Cuál era la ciudad más importante del Egipto romano?",
+    "respuesta": "Alejandría"
+  },
+  {
+    "id": "roma-140",
+    "pregunta": "¿Cuál era la ciudad más importante de la Siria romana?",
+    "respuesta": "Antioquía"
+  },
+  {
+    "id": "roma-141",
+    "pregunta": "¿Qué mar baña las costas orientales de la península itálica?",
+    "respuesta": "El Adriático"
+  },
+  {
+    "id": "roma-142",
+    "pregunta": "¿Qué mar baña las costas occidentales de la península itálica?",
+    "respuesta": "El Tirreno"
+  },
+  {
+    "id": "roma-143",
+    "pregunta": "¿Cómo llamaban los romanos a la actual Cerdeña?",
+    "respuesta": "Sardinia"
+  },
+  {
+    "id": "roma-144",
+    "pregunta": "¿Cómo llamaban los romanos a la actual Lyon?",
+    "respuesta": "Lugdunum"
+  },
+  {
+    "id": "roma-145",
+    "pregunta": "¿Cómo llamaban los romanos a la actual Marsella?",
+    "respuesta": "Massilia"
+  },
+  {
+    "id": "roma-146",
+    "pregunta": "¿Cómo llamaban los romanos a la actual París?",
+    "respuesta": "Lutetia"
+  },
+  {
+    "id": "roma-147",
+    "pregunta": "¿Cómo llamaban los romanos a la actual Estambul?",
+    "respuesta": "Bizancio"
+  },
+  {
+    "id": "roma-148",
+    "pregunta": "¿Cómo llamaban los romanos a la actual Mérida?",
+    "respuesta": "Emerita Augusta"
+  },
+  {
+    "id": "roma-149",
+    "pregunta": "¿Cómo llamaban los romanos al mar Negro?",
+    "respuesta": "Ponto Euxino"
+  },
+  {
+    "id": "roma-150",
+    "pregunta": "¿Quién era el flamen dialis?",
+    "respuesta": "El sacerdote de Júpiter"
+  },
+  {
+    "id": "roma-151",
+    "pregunta": "¿Quiénes eran los dioscuros?",
+    "respuesta": "Cástor y Pólux"
+  },
+  {
+    "id": "roma-152",
+    "pregunta": "¿Quiénes eran las vestales?",
+    "respuesta": "Sacerdotisas vírgenes dedicadas a mantener encendido el fuego sagrado de Roma en el templo de Vesta"
+  },
+  {
+    "id": "roma-153",
+    "pregunta": "¿Qué eran los faunos?",
+    "respuesta": "Criaturas mitológicas con cuerpo de hombre y patas y cuernos de cabra, asociados con la naturaleza, la lascivia y la música"
+  },
+  {
+    "id": "roma-154",
+    "pregunta": "¿Qué eran los lares?",
+    "respuesta": "Divinidades protectoras del hogar y la familia"
+  },
+  {
+    "id": "roma-155",
+    "pregunta": "Qué dios tenía la función de psicopompo?",
+    "respuesta": "Mercurio"
+  },
+  {
+    "id": "roma-156",
+    "pregunta": "¿Cómo se llamaba el barquero del inframundo?",
+    "respuesta": "Caronte"
+  },
+  {
+    "id": "roma-157",
+    "pregunta": "¿Dónde vivían los dioses?",
+    "respuesta": "En el monte Olimpo"
+  },
+  {
+    "id": "roma-158",
+    "pregunta": "¿Dónde vivían las musas?",
+    "respuesta": "En el monte Helicón"
+  },
+  {
+    "id": "roma-159",
+    "pregunta": "¿Dónde vivía la Sibila?",
+    "respuesta": "En Cumas"
+  },
+  {
+    "id": "roma-160",
+    "pregunta": "¿Qué era la Sibila?",
+    "respuesta": "Una sacerdotisa de Apolo que profetizaba el futuro y le ofreció los Libros Sibilinos a Tarquinio el Soberbio"
+  },
+  {
+    "id": "roma-161",
+    "pregunta": "¿Cuál es el equivalente griego de Proserpina?",
+    "respuesta": "Perséfone"
+  },
+  {
+    "id": "roma-162",
+    "pregunta": "¿Cuál es el equivalente griego de Vulcano?",
+    "respuesta": "Hefesto"
+  },
+  {
+    "id": "roma-163",
+    "pregunta": "Declina rosa-ae en singular y plural",
+    "respuesta": "rosa, -am, -ae, -ae, -a, -ae, -ae, -as, -arum, -is, -is"
+  },
+  {
+    "id": "roma-164",
+    "pregunta": "Declina lupus-i en singular y plural",
+    "respuesta": "lupus, -e, -um, -i, -o, -o, -i, -i, -os, -orum, -is, -is"
+  },
+  {
+    "id": "roma-165",
+    "pregunta": "Declina vir-i en singular y plural",
+    "respuesta": "vir, -um, -i, -o, -o, -i, -i, -os, -orum, -is, -is"
+  },
+  {
+    "id": "roma-166",
+    "pregunta": "Declina vis-vis en singular y plural",
+    "respuesta": "vis, vim, vis, vi, vi, vires, vires, virium, viribus, viribus"
+  },
+  {
+    "id": "roma-167",
+    "pregunta": "Declina lex-legis en singular y plural",
+    "respuesta": "lex, legem, legis, legi, lege, leges, leges, legum, legibus, legibus"
+  },
+  {
+    "id": "roma-168",
+    "pregunta": "Declina peplum-i en singular y plural",
+    "respuesta": "peplum, -um, -i, -o, -o, -a, -a, -orum, -is, -is"
+  },
+  {
+    "id": "roma-169",
+    "pregunta": "Declina mare-is en singular y plural",
+    "respuesta": "mare, -em, -is, -i, -i, -ia, -ia, -ium, -ibus, -ibus"
+  },
+  {
+    "id": "roma-170",
+    "pregunta": "Declina el pronombre personal en primera persona en singular y plural",
+    "respuesta": "ego, me, mei, mihi, me, nos, nos, nostrum, nobis, nobis"
+  },
+  {
+    "id": "roma-171",
+    "pregunta": "Enuncia los 3 pronombres demostrativos del latín",
+    "respuesta": "hic-haec-hoc, iste-a-ud y ille-a-ud"
+  },
+  {
+    "id": "roma-172",
+    "pregunta": "Enuncia el verbo amo",
+    "respuesta": "amo, amas, amare, amavi, amatum"
+  },
+  {
+    "id": "roma-173",
+    "pregunta": "¿Cuántas declinaciones tiene el latín?",
+    "respuesta": "5"
+  },
+  {
+    "id": "roma-174",
+    "pregunta": "¿Cuántas conjugaciones tiene el latín?",
+    "respuesta": "4"
+  },
+  {
+    "id": "roma-175",
+    "pregunta": "Conjuga el verbo moneo en presente de indicativo",
+    "respuesta": "moneo, mones, monet, monemus, monetis, monent"
+  },
+  {
+    "id": "roma-176",
+    "pregunta": "Conjuga el verbo lego en presente de indicativo pasivo",
+    "respuesta": "legor, legeris, legitur, legimus, legimini, leguntur"
+  },
+  {
+    "id": "roma-177",
+    "pregunta": "¿Cuál es el participio de presente del verbo amo en nominativo y genitivo singular?",
+    "respuesta": "Amans-amantis"
+  },
+  {
+    "id": "roma-178",
+    "pregunta": "¿Cuál es el infinitivo de futuro acitvo del verbo dico?",
+    "respuesta": "Dicturum/-am/-um esse"
+  },
+  {
+    "id": "roma-179",
+    "pregunta": "¿Cuál es el participio de futuro pasivo del verbo audio en neutro singular?",
+    "respuesta": "Audiendum"
+  },
+  {
+    "id": "roma-180",
+    "pregunta": "Enuncia el verbo fero",
+    "respuesta": "fero, fers, ferre, tuli, latum"
+  },
+  {
+    "id": "roma-181",
+    "pregunta": "Enuncia el verbo volo",
+    "respuesta": "volo, vis, velle, volui, (-)"
+  },
+  {
+    "id": "roma-182",
+    "pregunta": "¿Con qué preposición y con qué caso se expresa la procedencia en latín?",
+    "respuesta": "E/ex, a/ab, de + Ablativo"
+  },
+  {
+    "id": "roma-183",
+    "pregunta": "¿Con qué preposición y con qué caso se expresa la procedencia en latín?",
+    "respuesta": "Ad, in + Acusativo"
+  },
+  {
+    "id": "roma-184",
+    "pregunta": "¿Qué construcción encontramos en ‘Urbe capta, milites discesserunt’?",
+    "respuesta": "Un Ablativo Absoluto"
+  },
+  {
+    "id": "roma-185",
+    "pregunta": "¿Quién es el sujeto del infinitivo en la frase ‘’Magister pueros laborare iubet’’?",
+    "respuesta": "El acusativo pueros"
+  },
+  {
+    "id": "roma-186",
+    "pregunta": "¿Qué valor tiene cum en esta frase ‘Cum hostes appropinquarent, Romani urbem defendere paraverunt’?",
+    "respuesta": "Tiene un valor temporal-causal"
+  },
+  {
+    "id": "roma-187",
+    "pregunta": "¿Qué valor tiene la oración de ut en ‘Milites laborant ut urbem defendant’?",
+    "respuesta": "Tiene un valor final"
+  },
+  {
+    "id": "roma-188",
+    "pregunta": "¿Cómo se traduce la frase ‘Carthago delenda est’?",
+    "respuesta": "Cartago debe ser destruida"
+  },
+  {
+    "id": "roma-189",
+    "pregunta": "¿Cómo se traduce la frase ‘Puella librum legit, quem magister dederat’?",
+    "respuesta": "La niña lee el libro, que el maestro le había entregado"
+  },
+  {
+    "id": "roma-190",
+    "pregunta": "¿Qué valor sintáctico tiene laetum en la frase ‘Puerum laetum video’?",
+    "respuesta": "Complemento predicativo"
+  },
+  {
+    "id": "roma-191",
+    "pregunta": "¿Qué valor sintáctico tiene regina en la frase ‘Cleopatra, regina aegyptorum, legit multos libros’?",
+    "respuesta": "Aposición"
+  },
+  {
+    "id": "roma-192",
+    "pregunta": "¿Qué significan las siglas S.P.Q.R?",
+    "respuesta": "Senatus Populusque Romanus"
+  },
+  {
+    "id": "roma-193",
+    "pregunta": "¿Cómo se llaman las lenguas que evolucionaron del latín?",
+    "respuesta": "Lenguas romances"
+  },
+  {
+    "id": "roma-194",
+    "pregunta": "¿Cómo se dice ‘’campamento’’ en latín?",
+    "respuesta": "Castra"
+  },
+  {
+    "id": "roma-195",
+    "pregunta": "¿Cómo se dice ‘’soldado’’ en latín?",
+    "respuesta": "Miles"
+  },
+  {
+    "id": "roma-196",
+    "pregunta": "¿Cómo se dice ‘’jinete’’ en latín?",
+    "respuesta": "Eques"
+  },
+  {
+    "id": "roma-197",
+    "pregunta": "¿Cómo se dice ‘’espada’’ en latín?",
+    "respuesta": "Gladius"
+  },
+  {
+    "id": "roma-198",
+    "pregunta": "¿Cómo se dice ‘’lanza’’ en latín?",
+    "respuesta": "Pilum"
+  },
+  {
+    "id": "roma-199",
+    "pregunta": "¿Cómo se dice ‘’tortuga’’ en latín?",
+    "respuesta": "Testudo"
+  },
+  {
+    "id": "roma-200",
+    "pregunta": "¿Cómo se dice ‘’flecha’’ en latín?",
+    "respuesta": "Sagitta"
+  },
+  {
+    "id": "roma-201",
+    "pregunta": "¿De qué étimo latino proviene la palabra ariete?",
+    "respuesta": "Aries, arietis (carnero)"
+  },
+  {
+    "id": "roma-202",
+    "pregunta": "¿De qué étimo latino proviene el signo zodiacal Sagitario?",
+    "respuesta": "Sagittarius, sagittarii (arquero)"
+  },
+  {
+    "id": "roma-203",
+    "pregunta": "¿Qué géneros tiene el latín?",
+    "respuesta": "Masculino, femenino y neutro."
+  },
+  {
+    "id": "roma-204",
+    "pregunta": "¿De qué cultura tomaron los romanos el alfabeto?",
+    "respuesta": "De los etruscos."
+  },
+  {
+    "id": "roma-205",
+    "pregunta": "¿Con qué casos pueden aparecer preposiciones?",
+    "respuesta": "Ablativo, acusativo (y genitivo)."
+  },
+  {
+    "id": "roma-206",
+    "pregunta": "¿En qué concuerdan un relativo y su antecedente?",
+    "respuesta": "En número y género."
+  },
+  {
+    "id": "roma-207",
+    "pregunta": "¿Qué formas nominales tiene el verbo griego?",
+    "respuesta": "Infinitivo, participio, gerundio y supino."
+  },
+  {
+    "id": "roma-208",
+    "pregunta": "¿De qué lengua hipotética proviene el latín?",
+    "respuesta": "Del indoeuropeo."
+  },
+  {
+    "id": "roma-209",
+    "pregunta": "¿Cuál era el principal soporte de escritura de la Antigüedad?",
+    "respuesta": "El papiro."
+  },
+  {
+    "id": "roma-210",
+    "pregunta": "¿Qué soporte de escritura se extendió por Europa en el siglo III?",
+    "respuesta": "El pergamino."
+  },
+  {
+    "id": "roma-211",
+    "pregunta": "¿Cómo se escribía en la antigua Roma?",
+    "respuesta": "En mayúsculas, sin espacios entre palabras ni signos de puntuación."
+  },
+  {
+    "id": "roma-212",
+    "pregunta": "Menciona algunos instrumentos de escritura de la Antigüedad.",
+    "respuesta": "El calamus, stilus, penna scriptoria…"
+  },
+  {
+    "id": "roma-213",
+    "pregunta": "¿Qué formaba la unión de 20 hojas de papiro?",
+    "respuesta": "Un volumen."
+  },
+  {
+    "id": "roma-214",
+    "pregunta": "¿Qué tipos de sílabas tiene el latín?",
+    "respuesta": "Largas (-) o breves (v)."
+  },
+  {
+    "id": "roma-215",
+    "pregunta": "¿Cuáles son las oclusivas sordas?",
+    "respuesta": "P, T y K."
+  },
+  {
+    "id": "roma-216",
+    "pregunta": "¿Cuáles son las oclusivas sonoras?",
+    "respuesta": "B, D y G."
+  },
+  {
+    "id": "roma-217",
+    "pregunta": "¿Cómo son las vocales ‘i’ e ‘u’?",
+    "respuesta": "Vocales cerradas."
+  },
+  {
+    "id": "roma-218",
+    "pregunta": "Menciona derivados de genus, generis.",
+    "respuesta": "Generación, genética, regenerar…"
+  },
+  {
+    "id": "roma-219",
+    "pregunta": "Menciona derivados de pes, pedis.",
+    "respuesta": "Pedal, impedir, peatón, peaje…"
+  },
+  {
+    "id": "roma-220",
+    "pregunta": "Menciona derivados de caput, capitis.",
+    "respuesta": "Capital, capilla, bíceps, capitán…"
+  },
+  {
+    "id": "roma-221",
+    "pregunta": "Menciona derivados de ducere.",
+    "respuesta": "Conducir, acueducto, traducir, conducta…"
+  },
+  {
+    "id": "roma-222",
+    "pregunta": "Menciona derivados de videre.",
+    "respuesta": "Televisión, visita, supervisar, previsión…"
+  },
+  {
+    "id": "roma-223",
+    "pregunta": "¿Qué significa Ad calendas graecas?",
+    "respuesta": "Para una fecha indeterminada o nunca (no existía la fecha de las kalendas en Grecia)."
+  },
+  {
+    "id": "roma-224",
+    "pregunta": "¿Qué significa Alter ego?",
+    "respuesta": "Otro yo (utilizado principalmente para referirse a múltiples personalidades)."
+  },
+  {
+    "id": "roma-225",
+    "pregunta": "¿Qué significa bis?",
+    "respuesta": "Dos veces."
+  },
+  {
+    "id": "roma-226",
+    "pregunta": "¿Qué significa Carpe diem?",
+    "respuesta": "Atrapa el día (Horacio)."
+  },
+  {
+    "id": "roma-227",
+    "pregunta": "¿Qué significa Cogito, ergo sum?",
+    "respuesta": "Pienso, luego existo (Descartes)."
+  },
+  {
+    "id": "roma-228",
+    "pregunta": "¿Qué significa in situ?",
+    "respuesta": "En el lugar."
+  },
+  {
+    "id": "roma-229",
+    "pregunta": "¿Qué significa tabula rasa?",
+    "respuesta": "Tabla lisa, sin marca (la mente sin conocimiento ni habilidades innatas)."
+  },
+  {
+    "id": "roma-230",
+    "pregunta": "¿Qué significa Locus amoenus?",
+    "respuesta": "Lugar idílico (Virgilio)."
+  },
+  {
+    "id": "roma-231",
+    "pregunta": "¿Qué significa Tempus fugit?",
+    "respuesta": "El tiempo huye (Virgilio)."
+  },
+  {
+    "id": "roma-232",
+    "pregunta": "¿Cuál fue el primer testimonio literario de la lengua latina?",
+    "respuesta": "La traducción de la Odisea al latín hecha por Livio Andronico en el siglo III a.C."
+  },
+  {
+    "id": "roma-233",
+    "pregunta": "¿Quién fue el primer traductor de la Biblia al latín?",
+    "respuesta": "San Jerónimo."
+  },
+  {
+    "id": "roma-234",
+    "pregunta": "¿Cómo se comunicaban a distancia los romanos?",
+    "respuesta": "Mediante la redacción de epístolas."
+  },
+  {
+    "id": "roma-235",
+    "pregunta": "¿Cuál era el espectáculo público favorito de los romanos?",
+    "respuesta": "Las carreras de carros en el circo."
+  },
+  {
+    "id": "roma-236",
+    "pregunta": "¿Qué diferencia hay entre la imitatio y la aemulatio?",
+    "respuesta": "La imitatio consiste en tomar a los autores ejemplares como modelos, mientras que la aemulatio no solo imita, sino que intenta superar al modelo."
+  },
+  {
+    "id": "roma-237",
+    "pregunta": "Cuántos soldados solían formar una legión completa?",
+    "respuesta": "Unos 5200."
+  },
+  {
+    "id": "roma-238",
+    "pregunta": "¿Qué general romano introdujo una importante reforma en el ejército a principios del siglo I a.C.?",
+    "respuesta": "Cayo Mario."
+  },
+  {
+    "id": "roma-239",
+    "pregunta": "¿Quiénes formaban parte de los auxilia?",
+    "respuesta": "Los habitantes de las provincias"
+  },
+  {
+    "id": "roma-240",
+    "pregunta": "¿Qué eran los catafractos?",
+    "respuesta": "Unidades de caballería pesada altamente blindada."
+  },
+  {
+    "id": "roma-241",
+    "pregunta": "¿Qué era un signaculum?",
+    "respuesta": "Una tablilla de plomo, que servía como método de distinción en el ejército romano"
+  },
+  {
+    "id": "roma-242",
+    "pregunta": "Quiénes eran los lecti?",
+    "respuesta": "Los ciudadanos romanos que habían sido reclutados forzosamente al ejército"
+  },
+  {
+    "id": "roma-243",
+    "pregunta": "¿Quién estaba al mando de una centuria?",
+    "respuesta": "Un centurión"
+  },
+  {
+    "id": "roma-244",
+    "pregunta": "¿Quién estaba al mando de una cohorte?",
+    "respuesta": "Un tribuno"
+  },
+  {
+    "id": "roma-245",
+    "pregunta": "¿Quién estaba al mando de una legión?",
+    "respuesta": "Un legado"
+  },
+  {
+    "id": "roma-246",
+    "pregunta": "¿Qué era el vallum?",
+    "respuesta": "La empalizada que defendía un campamento romano."
+  },
+  {
+    "id": "roma-247",
+    "pregunta": "¿Qué significa la expresión 'alea iacta est'?",
+    "respuesta": "La suerte está echada"
+  },
+  {
+    "id": "roma-248",
+    "pregunta": "¿Qué significa 'casus belli'?",
+    "respuesta": "Es el acto o incidente utilizado como justificación para iniciar un conflicto armado."
+  },
+  {
+    "id": "roma-249",
+    "pregunta": "Nombra 3 restos romanos que podemos encontrar a día de hoy en Castilla y León",
+    "respuesta": "El acueducto de Segovia, la villa romana La Olemeda o Almenara-Puras, las minas de las Médulas, la ciudad de Clunia…"
+  }
+]
