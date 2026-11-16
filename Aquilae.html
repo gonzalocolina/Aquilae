@@ -497,6 +497,8 @@
         let attackTargets = new Set();   // provincias que se pueden atacar desde attackFrom
         let attackSources = new Set();   // provincias propias desde las que se puede atacar
         let pendingAttack = null;        // { attacker, target } del ataque en curso
+        let currentQuestionId = null;    // pregunta mostrada ahora mismo
+        let answerRevealed = false;      // si ya se ha mostrado su respuesta
         let hoveredProvince = null;
 
         function isValidTarget(attacker, target) {
@@ -1573,6 +1575,35 @@
             document.getElementById('troopsModal').style.display = 'none';
         });
 
+        // Ventanas de la partida que se cierran al pulsar fuera de ellas.
+        // (La de Nueva/Cargar partida del inicio no se cierra así.)
+        function closeOnBackdrop(modalId, onClose) {
+            const modal = document.getElementById(modalId);
+            let pressedOnBackdrop = false;
+            // Se exige que la pulsación empiece y termine fuera, para no cerrar al arrastrar
+            modal.addEventListener('mousedown', e => { pressedOnBackdrop = e.target === modal; });
+            modal.addEventListener('click', e => {
+                if (e.target === modal && pressedOnBackdrop) onClose();
+                pressedOnBackdrop = false;
+            });
+        }
+        closeOnBackdrop('troopsModal', () => {
+            document.getElementById('troopsModal').style.display = 'none';
+        });
+        closeOnBackdrop('victoryModal', () => {
+            document.getElementById('victoryModal').style.display = 'none';
+        });
+        // Cerrar la pregunta cancela el ataque. Si aún no se había visto la respuesta,
+        // la pregunta vuelve al montón para que pueda salir más adelante.
+        closeOnBackdrop('questionModal', () => {
+            if (!answerRevealed && currentQuestionId !== null) {
+                usedQuestions = usedQuestions.filter(id => id !== currentQuestionId);
+            }
+            currentQuestionId = null;
+            closeQuestionModal();
+            updateUI();
+        });
+
         // Ataque: se elige en el panel lateral o pulsando en el mapa
         document.getElementById('attack').addEventListener('click', function() {
             if (attackMode) exitAttackMode();
@@ -1798,6 +1829,8 @@
             }
             const question = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
             usedQuestions.push(question.id);
+            currentQuestionId = question.id;
+            answerRevealed = false;
             renderBattleContext(attacker, target);
             document.getElementById('questionText').textContent = question.pregunta;
             document.getElementById('answerText').textContent = question.respuesta;
@@ -1834,6 +1867,7 @@
         }
 
         document.getElementById('showAnswer').addEventListener('click', function() {
+            answerRevealed = true;
             document.getElementById('answerText').style.display = 'block';
             document.getElementById('attackSuccess').style.display = 'inline-flex';
             document.getElementById('attackFailure').style.display = 'inline-flex';
