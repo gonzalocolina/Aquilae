@@ -2,7 +2,9 @@
 
 **Probado en el aula en 3 centros educativos, con alumnado de Educación Secundaria y de Bachillerato.** Juego de estrategia por turnos en el navegador para repasar Historia de Roma y Latín jugando. La clase se divide en equipos que se reparten las provincias del Imperio Romano sobre un mapa real. Para conquistar una provincia enemiga, el equipo tiene que responder bien una pregunta de la materia.
 
-**[▶ Jugar](https://gonzalocolina.github.io/Aquilae/)** (pulsa «Usar las preguntas de ejemplo» para probarlo al momento) · **[Creador de preguntas](https://gonzalocolina.github.io/Aquilae/editor/)**
+**[▶ Jugar](https://gonzalocolina.github.io/Aquilae/)** (pulsa «Usar las preguntas de ejemplo» para probarlo al momento) 
+
+**[Creador de preguntas](https://gonzalocolina.github.io/Aquilae/editor/)** (Crea tu propio conjunto de preguntas con esta herramienta)
 
 ![Mapa del Imperio Romano repartido entre cuatro equipos](docs/capturas/02-mapa.jpg)
 
