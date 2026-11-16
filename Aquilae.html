@@ -227,7 +227,11 @@
         #status { display: none; }
 
         /* ---------- Etiquetas de tropas ---------- */
-        .troops-label { pointer-events: none; width: auto !important; height: auto !important; background: none; border: none; }
+        /* Los números dejan pasar el toque a la provincia de debajo, salvo los que se pueden
+           elegir en el ataque: así en móvil el toque no se desvía a un número cercano */
+        .leaflet-pane .troops-label.leaflet-interactive { pointer-events: none; }
+        .leaflet-pane .troops-label.leaflet-interactive.is-tappable { pointer-events: auto; cursor: crosshair; }
+        .troops-label { width: auto !important; height: auto !important; background: none; border: none; }
         .troops-label > div {
             transform: translate(-50%, -50%);
             min-width: 30px; height: 30px; padding: 0 7px;
@@ -586,6 +590,8 @@
                     || prov === attackFrom
                     || (attackFrom ? attackTargets.has(prov) : canAttackFrom(prov));
                 el.classList.toggle('is-dim', !relevant);
+                el.classList.toggle('is-tappable', attackMode && prov !== attackFrom
+                    && (attackFrom ? attackTargets.has(prov) : canAttackFrom(prov)));
                 el.classList.toggle('is-focus', attackMode && (prov === attackFrom || prov === attackTarget || (attackFrom && attackTargets.has(prov))));
             });
         }
@@ -1123,6 +1129,22 @@
                         if (nameNorm) labelsCreated.add(nameNorm);
                         createdPositions.add(posKey);
 
+                        function onProvinceClick() {
+                            if (document.body.classList.contains('phase-setup')) return;
+                            if (attackMode) {
+                                handleAttackClick(feature);
+                                return;
+                            }
+                            selectedProvince = feature;
+                            document.getElementById('troopsModal').style.display = 'flex';
+                            document.getElementById('selectedProvince').textContent = feature.properties.name;
+                            document.getElementById('currentTroops').textContent = feature.troops || 4;
+                        }
+
+                        // El número de tropas cuenta como parte de la provincia cuando se puede pulsar
+                        // (ver .is-tappable); el resto del tiempo el toque pasa al polígono de debajo
+                        feature.troopsLabel.on('click', onProvinceClick);
+
                         layer.on({
                             mouseover: function(e) {
                                 hoveredProvince = feature;
@@ -1132,17 +1154,7 @@
                                 if (hoveredProvince === feature) hoveredProvince = null;
                                 e.target.setStyle(provinceStyle(feature));
                             },
-                            click: function(e) {
-                                if (document.body.classList.contains('phase-setup')) return;
-                                if (attackMode) {
-                                    handleAttackClick(feature);
-                                    return;
-                                }
-                                selectedProvince = feature;
-                                document.getElementById('troopsModal').style.display = 'flex';
-                                document.getElementById('selectedProvince').textContent = feature.properties.name;
-                                document.getElementById('currentTroops').textContent = feature.troops || 4;
-                            }
+                            click: onProvinceClick
                         });
 
                         try {
@@ -1313,7 +1325,7 @@
                     if (!lineCrossesLand(straight)) {
                         // no cruza tierra: dibujar línea recta
                         const latlngs = [[pa[1], pa[0]], [pb[1], pb[0]]];
-                        const poly = L.polyline(latlngs, Object.assign({ color: '#f3dea0', weight: 2.5, opacity: 0.9, dashArray: '8,6' }, options)).addTo(map);
+                        const poly = L.polyline(latlngs, Object.assign({ color: '#f3dea0', weight: 2.5, opacity: 0.9, dashArray: '8,6', interactive: false }, options)).addTo(map);
                         return poly;
                     }
 
@@ -1339,7 +1351,7 @@
                             const candidate = turf.lineString([pa, midOffset, pb]);
                             if (!lineCrossesLand(candidate)) {
                                 const latlngs = [[pa[1], pa[0]], [midOffset[1], midOffset[0]], [pb[1], pb[0]]];
-                                const poly = L.polyline(latlngs, Object.assign({ color: '#f3dea0', weight: 2.5, opacity: 0.95, dashArray: '8,6', smoothFactor: 1 }, options)).addTo(map);
+                                const poly = L.polyline(latlngs, Object.assign({ color: '#f3dea0', weight: 2.5, opacity: 0.95, dashArray: '8,6', smoothFactor: 1, interactive: false }, options)).addTo(map);
                                 return poly;
                             }
                         }
@@ -1347,7 +1359,7 @@
 
                     // si todo falla, regresar a línea recta como último recurso
                     const latlngs = [[pa[1], pa[0]], [pb[1], pb[0]]];
-                    const poly = L.polyline(latlngs, Object.assign({ color: '#f3dea0', weight: 2.5, opacity: 0.9, dashArray: '8,6' }, options)).addTo(map);
+                    const poly = L.polyline(latlngs, Object.assign({ color: '#f3dea0', weight: 2.5, opacity: 0.9, dashArray: '8,6', interactive: false }, options)).addTo(map);
                     return poly;
                 }
 
