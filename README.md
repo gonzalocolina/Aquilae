@@ -62,6 +62,7 @@ Aquilae.html            Juego (carga las preguntas desde un archivo JSON)
 editor-preguntas.html   Creador de preguntas
 Aquilae Latín.html      Primera versión, con las preguntas integradas en el código
 ejemplos/               Bancos de preguntas listos para usar
+icons/                  Favicon (SVG y PNG)
 docs/capturas/          Capturas del README
 ```
 

@@ -27,6 +27,8 @@ jobs:
           cp Aquilae.html site/index.html
           cp editor-preguntas.html site/editor/index.html
           cp -r ejemplos site/ejemplos
+          cp -r icons site/icons
+          cp -r icons site/editor/icons
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
