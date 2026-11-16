@@ -1,4 +1,4 @@
-# AQUILAE · Risk del Imperio Romano para el aula
+# AQUILAE · Juego de preguntas del Imperio Romano para el aula
 
 **Probado en el aula en 3 centros educativos, con alumnado de Educación Secundaria y de Bachillerato.** Juego de estrategia por turnos en el navegador para repasar Historia de Roma y Latín jugando. La clase se divide en equipos que se reparten las provincias del Imperio Romano sobre un mapa real. Para conquistar una provincia enemiga, el equipo tiene que responder bien una pregunta de la materia.
 
