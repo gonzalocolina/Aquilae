@@ -10,7 +10,7 @@
 
 ## Contexto
 
-- Diseñado dentro del **Proyecto de Investigación Docente *PhilHum Games***, para un **Trabajo Fin de Máster** del Máster en Educación.
+- Diseñado dentro del **Proyecto de Investigación Docente [*PhilHum-Games+*](https://philid.uva.es/pid_philhum_games_plus/)** de la Universidad de Valladolid, para un **Trabajo Fin de Máster** del Máster en Educación.
 - El profesorado no necesita saber programar: prepara sus preguntas con el editor incluido, las guarda en un archivo y las carga al empezar la partida. El mismo juego vale para cualquier tema o asignatura.
 
 ## Cómo se juega
@@ -69,4 +69,4 @@ docs/capturas/          Capturas del README
 ## Autoría
 
 - **Desarrollo:** Gonzalo Colina ([@gonzalocolina](https://github.com/gonzalocolina))
-- **Diseño didáctico, preguntas y validación en el aula:** Juan Pérez González ([@Juaan51](https://github.com/Juaan51)), Proyecto de Investigación Docente *PhilHum Games*
+- **Diseño didáctico, preguntas y validación en el aula:** Juan Pérez González ([@Juaan51](https://github.com/Juaan51)), Proyecto de Investigación Docente [*PhilHum-Games+*](https://philid.uva.es/pid_philhum_games_plus/)
