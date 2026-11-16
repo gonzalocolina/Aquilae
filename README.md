@@ -1,6 +1,6 @@
 # AQUILAE · Risk del Imperio Romano para el aula
 
-Juego de estrategia por turnos en el navegador para repasar Historia de Roma y Latín jugando. La clase se divide en equipos que se reparten las provincias del Imperio Romano sobre un mapa real. Para conquistar una provincia enemiga, el equipo tiene que responder bien una pregunta de la materia.
+**Probado en el aula en 3 centros educativos, con alumnado de Educación Secundaria y de Bachillerato.** Juego de estrategia por turnos en el navegador para repasar Historia de Roma y Latín jugando. La clase se divide en equipos que se reparten las provincias del Imperio Romano sobre un mapa real. Para conquistar una provincia enemiga, el equipo tiene que responder bien una pregunta de la materia.
 
 **[▶ Jugar](https://gonzalocolina.github.io/Aquilae/)** (pulsa «Usar las preguntas de ejemplo» para probarlo al momento) · **[Creador de preguntas](https://gonzalocolina.github.io/Aquilae/editor/)** · **[Preguntas de ejemplo](ejemplos/preguntas-roma.json)**
 
@@ -9,7 +9,6 @@ Juego de estrategia por turnos en el navegador para repasar Historia de Roma y L
 ## Contexto
 
 - Diseñado dentro del **Proyecto de Investigación Docente *PhilHum Games***, para un **Trabajo Fin de Máster** del Máster en Educación.
-- **Probado en el aula en 3 centros de Educación Secundaria y Bachillerato.**
 - El profesorado no necesita saber programar: prepara sus preguntas con el editor incluido, las guarda en un archivo y las carga al empezar la partida. El mismo juego vale para cualquier tema o asignatura.
 
 ## Cómo se juega
